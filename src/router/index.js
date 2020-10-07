@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import HomePage from "../views/HomePage";
+import About from "../views/About";
+import App from "../App";
 
 Vue.use(VueRouter)
 
@@ -9,7 +11,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: HomePage
+    component: App
   },
   {
     path: '/home',
@@ -27,7 +29,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  mode: 'history',
 })
 
 export default router
