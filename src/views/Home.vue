@@ -28,12 +28,11 @@ export default {
       headers: [
         { text: 'Id', value: 'id' },
         { text: 'Nomor', value: 'nomor' },
-        { text: 'Isi', value: 'isi' },
-        { text: 'Provider', value: 'jenis_provider' },
-        { text: 'Judul', value: 'judul' },
+        { text: 'Isi Pesan', value: 'isi' },
+        { text: 'Jenis Provider', value: 'jenis_provider' },
         { text: 'Jumlah', value: 'jumlah' },
         { text: 'Kategori', value: 'kategori' },
-        { text: 'Nama Pengirim', value: 'nama_pengirim' },
+        // { text: 'Nama Pengirim', value: 'nama_pengirim' },
         { text: 'Tanggal', value: 'tanggal' },
       ],desserts: [],
     }

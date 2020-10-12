@@ -15,6 +15,7 @@
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "serve-static": "^1.14.1",
+    "v-tooltip": "^2.0.3",
     "vue": "^2.6.12",
     "vue-axios": "^3.0.1",
     "vue-bootstrap4-table": "^1.1.11",

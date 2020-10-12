@@ -1,114 +1,68 @@
 <template>
-    <div>
+    <div class="container">
         <v-form v-model="valid">
-            <v-container>
                 <v-row>
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
+                    <v-col cols="12" md="12">
                         <v-text-field
                                 v-model="nomor"
                                 :counter="13"
-                                label="Nomor "
-                                required
-                        ></v-text-field>
+                                label="Nomor Pengirim Pesan"
+                                required>
+                        </v-text-field>
                     </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
+                    <v-col cols="12" md="12">
                         <v-text-field
                                 v-model="isi"
-                                label="Isi"
-                                required
-                        ></v-text-field>
+                                label="Isi Pesan"
+                                required>
+                        </v-text-field>
                     </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
+                    <v-col cols="12" md="3">
                         <v-select
                                 v-model="select"
                                 :items="providers"
                                 :rules="[v => !!v || 'Item is required']"
-                                label="Provider"
-                                required
-                        ></v-select>
+                                label="Jenis Provider"
+                                required>
+                        </v-select>
                     </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
-                        <v-text-field
-                                v-model="judul"
-                                label="Judul"
-                                required
-                        ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
+                    <v-col cols="12" md="3">
                         <v-text-field
                                 type="number"
                                 v-model="jumlah"
                                 label="Jumlah"
-                                min="0"
-                                required
-                        ></v-text-field>
+                                min="1"
+                                required>
+                        </v-text-field>
                     </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
+                    <v-col cols="12" md="3">
                         <v-select
                                 v-model="kategori_select"
                                 :items="kategori"
                                 :rules="[v => !!v || 'Item is required']"
-                                label="Kategori"
-                                required
-                        ></v-select>
+                                label="Kategori Pesan"
+                                required>
+                        </v-select>
                     </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
-                        <v-text-field
-                                v-model="nama_pengirim"
-                                label="Nama Pengirim"
-                                required
-                        ></v-text-field>
-                    </v-col>
-
-                    <v-col
-                            cols="12"
-                            md="4"
-                    >
+                    <v-col cols="12" md="3">
                         <v-text-field
                                 v-model="tanggal"
                                 type="date"
-                                label="Tanggal"
-                                required
-                        ></v-text-field>
+                                label="Tanggal Pesan Diterima"
+                                required>
+                        </v-text-field>
+                    </v-col>
+                    <v-col cols="12" md="12">
+                        <v-text-field
+                                v-model="nama_pengirim"
+                                label="Nama Pengirim (Opsional)"
+                                required>
+                        </v-text-field>
                     </v-col>
                 </v-row>
-                <v-btn
-                        color="#1976D2"
-                        align="right"
-                        style="color: white; alignment: right"
-                        class="mr-4"
-                        @click="submit"
-                >
+                <v-btn color="#1976D2" align="right" style="color: white; alignment: right" class="mr-4" @click="submit">
                     submit
                 </v-btn>
-            </v-container>
         </v-form>
     </div>
 </template>
@@ -134,17 +88,15 @@
                 nama: '',
                 isi: '',
                 judul: '',
-                jumlah: 0,
+                jumlah: 1,
                 kategori_select:'',
                 kategori: [
-                    'Finansial',
-                    'Iklan',
-                    'Kesehatan dan Obat-obatan',
-                    'Gratisan',
-                    'Kartu kredit',
-                    'Edukasi',
-                    'Tipuan negara',
-                    'Berhubungan dengan TI',
+                    'Penipuan',
+                    'Gift Card (Penipuan yang mengarahkan ke link tertentu)',
+                    'Iklan/promosi',
+                    'Banking (transaksi SMS banking)',
+                    'Operator (Pesan yang langsung dari operator tertentu)',
+                    'Unknown (Pesan yang tidak menggangu namun nomor pengirim ttidak diketahui)'
                 ],
                 nama_pengirim: '',
                 tanggal:'',
@@ -168,7 +120,7 @@
 
             },
             validate(){
-                if(!this.nomor || !this.isi || !this.select || !this.judul || this.jumlah==0 || !this.kategori_select
+                if(!this.nomor || !this.isi || !this.select  || !this.kategori_select
                     || !this.nama_pengirim || !this.tanggal){
                     alert('Semua Field Harus diisi');
                 }else{
