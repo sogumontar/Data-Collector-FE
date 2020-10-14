@@ -60,10 +60,11 @@
                         </v-text-field>
                     </v-col>
                 </v-row>
-                <v-btn color="#1976D2" align="right" style="color: white; alignment: right" class="mr-4" @click="submit">
+                <v-btn color="#1F4068" align="right" style="color: white; alignment: right" class="mr-4" @click="submit">
                     submit
                 </v-btn>
         </v-form>
+        <a href="/after">asd</a>
     </div>
 </template>
 

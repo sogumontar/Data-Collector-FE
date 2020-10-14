@@ -19,6 +19,8 @@
     "vue": "^2.6.12",
     "vue-axios": "^3.0.1",
     "vue-bootstrap4-table": "^1.1.11",
+    "vue-google-login": "^2.0.5",
+    "vue-google-oauth2": "^1.5.5",
     "vue-router": "^3.2.0",
     "vuetify": "^2.3.12"
   },
