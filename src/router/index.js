@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import HomePage from "../views/HomePage";
 import About from "../views/About";
 import App from "../App";
+import After from "../views/After";
 
 Vue.use(VueRouter)
 
@@ -12,6 +13,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: App
+  },
+  {
+    path: '/after',
+    name: 'after',
+    component: After
   },
   {
     path: '/home',

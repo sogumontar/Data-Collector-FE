@@ -2,7 +2,8 @@
     <v-app>
         <v-app-bar
                 app
-                color="primary"
+                style="color: #ebecf1"
+                color="#1b1c25"
                 dark
         >
             <div class="d-flex align-center">
@@ -10,13 +11,13 @@
                         alt="Vuetify Logo"
                         class="shrink mr-2"
                         contain
-                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+                        src="../../public/logo.png"
                         transition="scale-transition"
-                        width="40"
+                        width="100"
                 />
 
                 <div class="container">
-                    <h5>Spam Data Collector TA-07</h5>
+                    <h5 style="color: #ffffff">Spam Data Collector TA-07</h5>
                 </div>
             </div>
 
@@ -37,11 +38,11 @@
                             rounded
                             background-color="#FFFFFF"
                     >
-                        <v-btn :color="!login?'#1976d2':'#ffffff'" :class="!login?'white--text' : 'black--text'"
+                        <v-btn :color="!login?'#1f4068':'#ffffff'" :class="!login?'white--text' : 'black--text'"
                                @click="login = false">
                             Lihat Data
                         </v-btn>
-                        <v-btn :color="login?'#1976d2':'#ffffff'" :class="login?'white--text' : 'black--text'"
+                        <v-btn :color="login?'#1f4068':'#ffffff'" :class="login?'white--text' : 'black--text'"
                                @click="login = true">
                             Tambah Data
                         </v-btn>
@@ -56,12 +57,15 @@
                 <FormSpam/>
             </div>
         </v-main>
+
+        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure">Login</GoogleLogin>
     </v-app>
 </template>
 
 <script>
     import Home from "./Home";
     import FormSpam from "../components/FormSpam";
+    import GoogleLogin from 'vue-google-login';
 
     export default {
         name: 'HomePage',
@@ -70,11 +74,30 @@
         components: {
             FormSpam,
             Home,
+            GoogleLogin
         },
         data() {
             return {
+                params: {
+                    client_id: "996225415106-qqs15f2riu4ge4v0go9cf00hn75ofvmu.apps.googleusercontent.com"
+                },
+                // only needed if you want to render the button with the google ui
+                renderParams: {
+                    width: 250,
+                    height: 50,
+                    longtitle: true
+                },
                 login: false
             }
         },
+        methods: {
+            onSuccess(googleUser) {
+                console.log("test");
+                console.log("asd"+googleUser);
+
+                // This only gets the user information: id, name, imageUrl and email
+                console.log(googleUser.getBasicProfile());
+            }
+        }
     };
 </script>

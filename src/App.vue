@@ -8,6 +8,7 @@
 import Home from "./views/Home";
 import FormSpam from "./components/FormSpam";
 import HomePage from "./views/HomePage";
+import After from "./views/After";
 
 export default {
   name: 'App',
@@ -17,6 +18,7 @@ export default {
     HomePage,
     FormSpam,
     Home,
+    After
   },
   data(){
     return {
