@@ -130,7 +130,7 @@
             },
             store(){
                 this.$http.post('/store',{
-                    "judul": this.judul,
+                    "judul": '--',
                     "tanggal": this.tanggal,
                     "isi": this.isi,
                     "nomor": this.nomor,
