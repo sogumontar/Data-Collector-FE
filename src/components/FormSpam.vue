@@ -60,11 +60,15 @@
                         </v-text-field>
                     </v-col>
                 </v-row>
-                <v-btn color="#1F4068" align="right" style="color: white; alignment: right" class="mr-4" @click="submit">
+                <v-btn
+                        color="#1F4068"
+                        align="right"
+                        style="color: white; alignment: right"
+                        class="mr-4"
+                        @click="submit">
                     submit
                 </v-btn>
         </v-form>
-        <a href="/after">asd</a>
     </div>
 </template>
 
@@ -97,13 +101,15 @@
                     'Iklan/promosi',
                     'Banking (transaksi SMS banking)',
                     'Operator (Pesan yang langsung dari operator tertentu)',
-                    'Unknown (Pesan yang tidak menggangu namun nomor pengirim ttidak diketahui)'
+                    'Unknown (Pesan yang tidak menggangu namun nomor pengirim ' +
+                    'tidak diketahui)'
                 ],
                 nama_pengirim: '',
                 tanggal:'',
                 nameRules: [
                     v => !!v || 'Name is required',
-                    v => v.length <= 10 || 'Name must be less than 10 characters',
+                    v => v.length <= 10 ||
+                        'Name must be less than 10 characters',
                 ],
                 email: '',
                 emailRules: [
@@ -121,8 +127,11 @@
 
             },
             validate(){
-                if(!this.nomor || !this.isi || !this.select  || !this.kategori_select
-                    || !this.nama_pengirim || !this.tanggal){
+                if(
+                    !this.nomor || !this.isi || !this.select  ||
+                    !this.kategori_select || !this.nama_pengirim ||
+                    !this.tanggal
+                ){
                     alert('Semua Field Harus diisi');
                 }else{
                     this.store();

@@ -2,6 +2,7 @@
   <div>
     <br>
     <v-data-table
+
             :headers="headers"
             :items="desserts"
             :items-per-page="5"
@@ -41,3 +42,16 @@ export default {
   }
 }
 </script>
+<style>
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: none;
+    color: black!important;
+    border-radius: 4px;
+    border: 1px solid #828282;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+    background: none;
+    color: black!important;
+  }
+</style>
