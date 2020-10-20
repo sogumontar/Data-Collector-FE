@@ -29,7 +29,7 @@ export default {
       headers: [
         // { text: 'Id', value: 'id' },
         { text: 'Nomor telepon', value: 'nomor' },
-        // { text: 'Isi Pesan', value: 'isi' },
+        { text: 'Isi Pesan', value: 'isi' },
         { text: 'Jenis Provider', value: 'jenis_provider' },
         { text: 'Jumlah', value: 'jumlah' },
         { text: 'Kategori', value: 'kategori' },
