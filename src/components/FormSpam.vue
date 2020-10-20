@@ -106,7 +106,7 @@
                     'Unknown (Pesan yang tidak menggangu namun nomor pengirim ' +
                     'tidak diketahui)'
                 ],
-                nama_pengirim: '',
+                nama_pengirim: '--',
                 tanggal: '',
                 nameRules: [
                     v => !!v || 'Name is required',
@@ -134,7 +134,7 @@
                 var picked = Date.parse(this.tanggal);
                 if (
                     !this.nomor || !this.isi || !this.select ||
-                    !this.kategori_select || !this.nama_pengirim ||
+                    !this.kategori_select ||
                     !this.tanggal
                 ) {
                     alert('Semua Field Harus diisi');
