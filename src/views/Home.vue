@@ -2,10 +2,10 @@
   <div>
     <br>
     <v-data-table
-
+            dense
             :headers="headers"
             :items="desserts"
-            :items-per-page="5"
+            :items-per-page="10"
             class="elevation-1"
     ></v-data-table>
   </div>
@@ -27,14 +27,14 @@ export default {
   data() {
     return {
       headers: [
-        { text: 'Id', value: 'id' },
-        { text: 'Nomor', value: 'nomor' },
-        { text: 'Isi Pesan', value: 'isi' },
+        // { text: 'Id', value: 'id' },
+        { text: 'Nomor telepon', value: 'nomor' },
+        // { text: 'Isi Pesan', value: 'isi' },
         { text: 'Jenis Provider', value: 'jenis_provider' },
         { text: 'Jumlah', value: 'jumlah' },
         { text: 'Kategori', value: 'kategori' },
         // { text: 'Nama Pengirim', value: 'nama_pengirim' },
-        { text: 'Tanggal', value: 'tanggal' },
+        { text: 'Tanggal pengiriman', value: 'tanggal' },
       ],desserts: [],
     }
   },

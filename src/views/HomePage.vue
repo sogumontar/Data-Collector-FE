@@ -22,20 +22,20 @@
 
             <v-spacer></v-spacer>
 
-            <div right v-if="!login">
-                    <GoogleLogin
-                            :params="params"
-                            :onSuccess="onSuccess"
-                            :onFailure="onFailure"
-                            style="margin-top: 17px"
-                    >
-                        Login
-                    </GoogleLogin>
-            </div>
-            <b-nav-item-dropdown text="Lang" right v-else>
-                <b-dropdown-item href="#">Profile</b-dropdown-item>
-                <b-dropdown-item href="#">Logout</b-dropdown-item>
-            </b-nav-item-dropdown>
+<!--            <div right v-if="!login">-->
+<!--                    <GoogleLogin-->
+<!--                            :params="params"-->
+<!--                            :onSuccess="onSuccess"-->
+<!--                            :onFailure="onFailure"-->
+<!--                            style="margin-top: 17px"-->
+<!--                    >-->
+<!--                        Login-->
+<!--                    </GoogleLogin>-->
+<!--            </div>-->
+<!--            <b-nav-item-dropdown text="Lang" right v-else>-->
+<!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
+<!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
+<!--            </b-nav-item-dropdown>-->
         </v-app-bar>
         <br>
         <v-main class="container">
@@ -61,7 +61,7 @@
                 <div v-if="!first">
                     <Home/>
                 </div>
-                <div v-else>
+                <div v-else >
                     <FormSpam/>
                 </div>
             </div>
@@ -99,19 +99,19 @@
 <script>
     import Home from "./Home";
     import FormSpam from "../components/FormSpam";
-    import GoogleLogin from 'vue-google-login';
+    // import GoogleLogin from 'vue-google-login';
 
     export default {
         name: 'HomePage',
         components: {
             FormSpam,
             Home,
-            GoogleLogin
+            // GoogleLogin
         },
         mounted() {
-            if (!this.login) {
-                this.$bvModal.show('bv-modal-example')
-            }
+            // if (!this.login) {
+            //     this.$bvModal.show('bv-modal-example')
+            // }
         },
         data() {
             return {
