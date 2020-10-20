@@ -69,30 +69,30 @@
                 <h1>Login</h1>
             </div>
         </v-main>
-        <div>
-            <b-modal id="bv-modal-example" hide-footer>
-                <div class="d-block text-center">
-                    <h3>Spam Data Collector TA-07</h3>
-                    <p>Website ini ditujukan sebagai media untuk pengumpulan data sms yang bersifat SPAM
-                        (tidak diinginkan). Oleh karena itu, kami segenap kelompok TA-07 D4TRPL-2017, meminta bantuan
-                        dari seluruh rekan sekalian untuk membantu kami dalam hal mengumpulkan data yang nantinya akan
-                        dijadikan sebagai acuan dalam melakukan deteksi dan juga peng-klasifikasi-an setiap data pesan
-                        yang masuk ke nomor pengguna. Sebagai bentuk terimakasih, kami </p>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">
-                            <a href="#" class="google btn">
-                                <img src="../../public/g-icon.png" alt=""> Login with Google+
-                            </a>
-                        </GoogleLogin>
-                    </div>
-                    <div class="col-md-6">
-                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>
-                    </div>
-                </div>
-            </b-modal>
-        </div>
+<!--        <div>-->
+<!--            <b-modal id="bv-modal-example" hide-footer>-->
+<!--                <div class="d-block text-center">-->
+<!--                    <h3>Spam Data Collector TA-07</h3>-->
+<!--                    <p>Website ini ditujukan sebagai media untuk pengumpulan data sms yang bersifat SPAM-->
+<!--                        (tidak diinginkan). Oleh karena itu, kami segenap kelompok TA-07 D4TRPL-2017, meminta bantuan-->
+<!--                        dari seluruh rekan sekalian untuk membantu kami dalam hal mengumpulkan data yang nantinya akan-->
+<!--                        dijadikan sebagai acuan dalam melakukan deteksi dan juga peng-klasifikasi-an setiap data pesan-->
+<!--                        yang masuk ke nomor pengguna. Sebagai bentuk terimakasih, kami </p>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-md-6">-->
+<!--                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
+<!--                            <a href="#" class="google btn">-->
+<!--                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
+<!--                            </a>-->
+<!--                        </GoogleLogin>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6">-->
+<!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </b-modal>-->
+<!--        </div>-->
     </v-app>
 </template>
 
