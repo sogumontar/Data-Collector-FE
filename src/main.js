@@ -4,9 +4,11 @@ import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
 import BootstrapVue from "bootstrap-vue";
+import VueApexCharts from 'vue-apexcharts'
 import './style/bootstrap.min.css';
 import VTooltip from "v-tooltip";
 import GAuth from 'vue-google-oauth2';
+Vue.use(VueApexCharts)
 const gauthOption = {
     clientId: 'CLIENT_ID.apps.googleusercontent.com',
     scope: 'profile email',
@@ -20,6 +22,7 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios.create({
   baseURL: 'https://www.portal-desa.web.id/public/api',
 })
+Vue.component('apexchart', VueApexCharts)
 new Vue({
   router,
   vuetify,
