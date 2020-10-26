@@ -3,7 +3,6 @@ import axios from 'axios';
 import App from './App.vue';
 import router from './router';
 import vuetify from './plugins/vuetify';
-import VueApexCharts from "vue-apexcharts/dist/vue-apexcharts";
 import BootstrapVue from "bootstrap-vue";
 import VueApexCharts from 'vue-apexcharts'
 import './style/bootstrap.min.css';
