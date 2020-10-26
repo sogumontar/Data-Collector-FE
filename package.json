@@ -9,6 +9,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "apexcharts": "^3.22.0",
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.17.3",
