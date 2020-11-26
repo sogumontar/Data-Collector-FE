@@ -5,21 +5,21 @@
             <div class="col-md-8">
                 <v-card>
                     <v-data-table
-                            dense
-                            @click:row="show"
-                            :headers="headers"
-                            :items="desserts"
-                            :items-per-page="10"
-                            class="elevation-1"
+                           dense
+                           @click:row="show"
+                           :headers="headers"
+                           :items="desserts"
+                           :items-per-page="10"
+                           class="elevation-1"
                     ></v-data-table>
                 </v-card>
             </div>
             <div class="col-md-4">
-              <h5>Grafik provider penyebar spam</h5>
-              <hr>
+                <h5>Grafik provider penyebar spam</h5>
+                <hr>
                 <v-card id="chart">
                     <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
-                  <br><br><br><br>
+                    <br><br><br><br>
                 </v-card>
             </div>
         </div>
@@ -71,7 +71,7 @@
                         }
                         this.desserts.push(data.data.data[i])
                     }
-                    this.series.push( indosat, xl, axis,telkomsel, smartfren, tri, net, bolt);
+                    this.series.push(indosat, xl, axis, telkomsel, smartfren, tri, net, bolt);
                 }).catch(() => {
             });
         },

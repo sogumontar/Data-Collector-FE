@@ -7,14 +7,12 @@ import BootstrapVue from "bootstrap-vue";
 import VueApexCharts from 'vue-apexcharts'
 import './style/bootstrap.min.css';
 import VTooltip from "v-tooltip";
-import GAuth from 'vue-google-oauth2';
 Vue.use(VueApexCharts)
 const gauthOption = {
     clientId: 'CLIENT_ID.apps.googleusercontent.com',
     scope: 'profile email',
     prompt: 'select_account'
 }
-Vue.use(GAuth, gauthOption)
 Vue.use(VTooltip);
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

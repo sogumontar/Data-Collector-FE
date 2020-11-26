@@ -100,25 +100,15 @@
 <script>
     import Home from "./Home";
     import FormSpam from "../components/FormSpam";
-    // import GoogleLogin from 'vue-google-login';
 
     export default {
         name: 'HomePage',
         components: {
             FormSpam,
             Home,
-            // GoogleLogin
-        },
-        mounted() {
-            // if (!this.login) {
-            //     this.$bvModal.show('bv-modal-example')
-            // }
         },
         data() {
             return {
-                params: {
-                    client_id: "996225415106-qqs15f2riu4ge4v0go9cf00hn75ofvmu.apps.googleusercontent.com"
-                },
                 // only needed if you want to render the button with the google ui
                 renderParams: {
                     width: 250,
@@ -127,18 +117,6 @@
                 },
                 login: false,
                 first: false
-            }
-        },
-        methods: {
-            onSuccess(googleUser) {
-                console.log("test");
-                console.log("asd" + googleUser);
-
-                // This only gets the user information: id, name, imageUrl and email
-                console.log(googleUser.getBasicProfile());
-            },
-            onFailure() {
-                alert('Login failed.. Try again');
             }
         }
     };
