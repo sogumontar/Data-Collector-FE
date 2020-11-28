@@ -14,7 +14,7 @@
                     v-model="page"
                     :length="pageCount"
             ></v-pagination>
-          </div>
+          </div>    
   </div>
 </template>
 

@@ -50,7 +50,7 @@
                 </v-row>
             </v-card-title>
             <br>
-            <div v-if="!login" style="color: black">
+            <div v-if="!login">
                 <Home/>
             </div>
             <div v-else>
@@ -101,4 +101,7 @@
         }
     };
 </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f78ce37214c76f6578f6a6bede8497b7eeebc99
