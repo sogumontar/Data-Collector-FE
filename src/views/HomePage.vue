@@ -61,6 +61,50 @@
             <br>
             <div v-if="!login">
                 <div v-if="!first">
+                    <div class="container">
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <input class="form-control my-0 py-1 red-border" v-model="query"
+                                   type="number" min="0" placeholder="Masukkan nomor telepon"
+                                   aria-label="Search">
+                            <div class="input-group-append">
+                                <span class="input-group-text red lighten-3" id="basic-text1">
+                                  <a @click="search">search</a>
+                                </span>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div v-if="hit">
+                            <h5>Hasil Pencarian</h5>
+                            <div class="container" v-if="shows">
+                                <center><img style="width: 40%; height: 40%"
+                                             src="../assets/not-found.png" alt=""></center>
+                            </div>
+                            <div class="container" v-else>
+                                <div>
+                                    <transition-group name="fade" tag="div">
+                                        <div v-for="i in [currentIndex]" :key="i">
+                                            <center>
+                                                <p>{{currentImg.nomor}}</p>
+                                                <p>{{currentImg.isi}}</p>
+                                            </center>
+                                        </div>
+                                    </transition-group>
+                                    <center>
+                                        <div class="row">
+                                            <div class="col-md-6" align="left">
+                                                <a class="" @click="prev" href="#">&#10094;
+                                                    Previous</a>
+                                            </div>
+                                            <div class="col-md-6" align="right">
+                                                <a class="" @click="next" href="#">&#10095; Next</a>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
                     <div>
                         <br>
                         <div class="row">
@@ -137,20 +181,51 @@
 <script>
     import Home from "./Home";
     import FormSpam from "../components/FormSpam";
+    import {mdbIcon} from 'mdbvue';
 
     export default {
         name: 'HomePage',
         components: {
             FormSpam,
             Home,
+            mdbIcon
+        },
+        computed: {
+            currentImg: function () {
+                return this.results[Math.abs(this.currentIndex) % this.results.length];
+            }
         },
         mounted() {
             this.load();
         },
         methods: {
+            search() {
+                this.hit = true;
+                this.$http.post('/search/' + this.query)
+                    .then((data) => {
+                        console.log(data.data.data.length);
+                        if (data.data.data.length === 0) {
+                            this.shows = true;
+                        } else {
+                            this.shows = false;
+                            this.results = [];
+                            for (var i in data.data.data) {
+                                this.results.push(data.data.data[i])
+                            }
+                        }
+                    }).catch(() => {
+                });
+            },
             show(val) {
                 this.isi = val.isi;
                 this.$bvModal.show('bv-modal-example')
+            },
+
+            next: function () {
+                this.currentIndex += 1;
+            },
+            prev: function () {
+                this.currentIndex -= 1;
             },
             load() {
                 this.$http.get('/findAll')
@@ -197,9 +272,16 @@
                     height: 50,
                     longtitle: true
                 },
+                results: [],
+                timer: null,
+                currentIndex: 0,
                 login: false,
                 first: false,
+                hit: false,
                 series: [],
+                backup: [],
+                query: "",
+                shows: false,
                 chartOptions: {
                     chart: {
                         type: 'donut',
@@ -250,5 +332,54 @@
     .google {
         background-color: #bebebe;
         color: white;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: all 0.9s ease;
+        overflow: hidden;
+        visibility: visible;
+        position: absolute;
+        width: 100%;
+        opacity: 1;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+        visibility: hidden;
+        width: 100%;
+        opacity: 0;
+    }
+
+    img {
+        height: 600px;
+        width: 100%
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.7s ease;
+        border-radius: 0 4px 4px 0;
+        text-decoration: none;
+        user-select: none;
+    }
+
+    .next {
+        right: 0;
+    }
+
+    .prev {
+        left: 0;
+    }
+
+    .prev:hover, .next:hover {
+        background-color: rgba(0, 0, 0, 0.9);
     }
 </style>

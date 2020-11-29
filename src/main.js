@@ -7,12 +7,15 @@ import BootstrapVue from "bootstrap-vue";
 import VueApexCharts from 'vue-apexcharts'
 import './style/bootstrap.min.css';
 import VTooltip from "v-tooltip";
+import mdbClassMixin from "mdbvue/src/mixins/mdbClassMixin";
 Vue.use(VueApexCharts)
 const gauthOption = {
     clientId: 'CLIENT_ID.apps.googleusercontent.com',
     scope: 'profile email',
-    prompt: 'select_account'
+    prompt: 'select_' +
+        'account'
 }
+Vue.use(mdbClassMixin);
 Vue.use(VTooltip);
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
