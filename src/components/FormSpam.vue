@@ -73,7 +73,7 @@
         name: "FormSpam",
         data() {
             return {
-                select:'',
+                select: '',
                 providers: [
                     'Telkomsel',
                     'XL Axiata ',
@@ -90,20 +90,22 @@
                 isi: '',
                 judul: '',
                 jumlah: 1,
-                kategori_select:'',
+                kategori_select: '',
                 kategori: [
                     'Penipuan',
                     'Gift Card (Penipuan yang mengarahkan ke link tertentu)',
                     'Iklan/promosi',
                     'Banking (transaksi SMS banking)',
                     'Operator (Pesan yang langsung dari operator tertentu)',
-                    'Unknown (Pesan yang tidak menggangu namun nomor pengirim ttidak diketahui)'
+                    'Unknown (Pesan yang tidak menggangu namun nomor pengirim ' +
+                    'tidak diketahui)'
                 ],
-                nama_pengirim: '',
-                tanggal:'',
+                nama_pengirim: '--',
+                tanggal: '',
                 nameRules: [
                     v => !!v || 'Name is required',
-                    v => v.length <= 10 || 'Name must be less than 10 characters',
+                    v => v.length <= 10 ||
+                        'Name must be less than 10 characters',
                 ],
                 email: '',
                 emailRules: [
@@ -112,19 +114,27 @@
                 ],
             }
         },
-        methods:{
-            submit(){
+        methods: {
+            submit() {
                 console.log(this.nomor)
                 this.validate();
             },
-            clear(){
+            clear() {
 
             },
-            validate(){
-                if(!this.nomor || !this.isi || !this.select  || !this.kategori_select
-                    || !this.nama_pengirim || !this.tanggal){
+            validate() {
+                let today = new Date().toISOString().slice(0, 10)
+                var now = Date.parse(today);
+                var picked = Date.parse(this.tanggal);
+                if (
+                    !this.nomor || !this.isi || !this.select ||
+                    !this.kategori_select ||
+                    !this.tanggal
+                ) {
                     alert('Semua Field Harus diisi');
-                }else{
+                } else if (now < picked) {
+                    alert('Periksa kembali tanggal anda');
+                } else {
                     this.store();
                 }
             },
@@ -152,6 +162,7 @@
                     }
                 ).then(data => {
                     alert('Store Data Sukses')
+                    window.location.href = "/";
                 }).catch((e) => {
                     alert(e);
                 });
