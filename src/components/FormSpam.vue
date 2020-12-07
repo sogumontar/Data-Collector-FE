@@ -126,31 +126,30 @@
                 let today = new Date().toISOString().slice(0, 10)
                 var now = Date.parse(today);
                 var picked = Date.parse(this.tanggal);
+                var n = new Date().getDate();
+                var m = new Date().getMonth() + 1;
+                var y = new Date().getFullYear();
+                var dateNow = `${y}-${m}-${n>10?n:`0${n}`}`;
+                console.log(dateNow)
                 if (
                     !this.nomor || !this.isi || !this.select ||
                     !this.kategori_select ||
                     !this.tanggal
                 ) {
                     alert('Semua Field Harus diisi');
-                } else if (now < picked) {
-                    alert('Periksa kembali tanggal anda');
+                } else if(dateNow < this.tanggal){
+                    alert("Tidak boleh lewat dari tanggal sekarang")
+
                 } else {
                     this.store();
                 }
             },
             store(){
                 console.log(this.tanggal)
-                var n = new Date().getDate();
-                var m = new Date().getMonth() + 1;
-                var y = new Date().getFullYear();
-                var dateNow = `${y}-${m}-${n>10?n:`0${n}`}`;
-                console.log(dateNow)
-                if(dateNow < this.tanggal){
-                    alert("Tidak boleh lewat dari tanggal sekarang")
-                    return
-                }
+
+
                 this.$http.post('/store',{
-                    "judul": this.judul,
+                    "judul": "--",
                     "tanggal": this.tanggal,
                     "isi": this.isi,
                     "nomor": this.nomor,
