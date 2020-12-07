@@ -139,6 +139,7 @@
                     alert('Semua Field Harus diisi');
                 } else if(dateNow < this.tanggal){
                     alert("Tidak boleh lewat dari tanggal sekarang")
+                    
                 } else {
                     this.store();
                 }
