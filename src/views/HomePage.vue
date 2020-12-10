@@ -121,14 +121,38 @@
                                 </v-card>
                             </div>
                             <div class="col-md-4">
-                                <h5>Grafik provider penyebar spam</h5>
+                                <h4>Grafik provider penyebar spam</h4>
                                 <hr>
                                 <v-card id="chart">
                                     <apexchart type="donut" :options="chartOptions"
                                                :series="series"></apexchart>
                                     <br><br><br><br>
                                 </v-card>
+                                <h4>Keterangan Kategori</h4>
+                                <hr>
+                                <v-card >
+                                    <b-list-group-item>
+                                        <h6><b>Penipuan</b> -> Pesan ini mengandung unsur kebohongan yang menjanjikan sesuatu hadiah untuk menarik perhatian pengguna.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Gift Card</b> -> Pesan ini berisikan tentang hadiah yang didapatkan dengan mengklik link yang diberikan dari suatu perusahaan terkenal sepeti Shopee, Lazada,dan lain-lain.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Iklan/Promosi</b> -> Pesan ini berisikan tentang promosi suatu barang atau jasa seperti pinjaman online, dan lain-lain.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Banking</b> -> Pesan ini berisikan tentang informasi rekening pribadi, misalnya mengecek transaksi, cek saldo dan lain-lain.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Operator</b> -> Pesan ini berisikan informasi tentang provider yang dimiliki seperti, sisa kuota internet, isi ulang pulsa, promo harga kuota internet, dan lain-lain.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Unknown</b> -> Pesan yang tidak diketahui atau nomor yang tidak dikenal dan juga tidak termasuk unsur penipuan, gift card, promosi, banking dan operator. </h6>
+                                    </b-list-group-item>
+                                    
+                                </v-card>
                             </div>
+                        
                         </div>
                         <br><br>
                         <hr>
@@ -312,6 +336,7 @@
                         }
                     }]
                 },
+                
                 headers: [
                     // { text: 'Id', value: 'id' },
                     {text: 'Nomor telepon', value: 'nomor'},
