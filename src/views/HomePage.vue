@@ -128,6 +128,22 @@
                                                :series="series"></apexchart>
                                     <br><br><br><br>
                                 </v-card>
+                                <hr>
+                                <h5>Keterangan Kategori</h5>
+                                <hr>
+                                <v-card id="keterangan">
+                                    <p>Penipuan: Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus
+                                        yang menarik perhatian pengguna.</p>
+                                    <p>Iklan/promosi: Mengandung unsur promosi baik berupa barang maupun jasa seperti
+                                        telemarketer atau kreditur.</p>
+                                    <p>Banking: Menerima informasi mengenai rekening bank miliknya seperti cek saldo,
+                                        informasi transaksi, dan sebagainya.</p>
+                                    <p>Operator: Informasi terkait penggunaan fasilitas yang disediakan provider seperti
+                                        info kuota internet, informasi isi ulang pulsa, dll.</p>
+                                    <p>Unknown: pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur
+                                        penipuan, promosi, banking, dan operator.</p>
+                                    <br>
+                                </v-card>
                             </div>
                         </div>
                         <br><br>
