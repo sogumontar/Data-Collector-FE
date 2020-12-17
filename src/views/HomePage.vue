@@ -137,7 +137,7 @@
                                             yang menarik perhatian pengguna.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
-                                        <h6><b>Iklan/Promosi:</b> Iklan/promosi: Mengandung unsur promosi baik berupa barang maupun jasa seperti
+                                        <h6><b>Iklan/Promosi:</b> Mengandung unsur promosi baik berupa barang maupun jasa seperti
                                             telemarketer atau kreditur.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
