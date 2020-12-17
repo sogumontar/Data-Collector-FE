@@ -17,15 +17,6 @@
                                 required>
                         </v-text-field>
                     </v-col>
-<!--                    <v-col cols="12" md="3">-->
-<!--                        <v-select-->
-<!--                                v-model="select"-->
-<!--                                :items="providers"-->
-<!--                                :rules="[v => !!v || 'Item is required']"-->
-<!--                                label="Jenis Provider"-->
-<!--                                required>-->
-<!--                        </v-select>-->
-<!--                    </v-col>-->
                     <v-col cols="12" md="4">
                         <v-text-field
                                 type="number"
@@ -74,16 +65,6 @@
         data() {
             return {
                 select: '',
-                // providers: [
-                //     'Telkomsel',
-                //     'XL Axiata ',
-                //     'AXIS',
-                //     'Indosat Ooredoo',
-                //     'smartfren',
-                //     '3',
-                //     'Net1 Indonesia',
-                //     'BOLT',
-                // ],
                 valid: false,
                 nomor: '',
                 nama: '',

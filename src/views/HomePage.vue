@@ -121,7 +121,7 @@
                                 </v-card>
                             </div>
                             <div class="col-md-4">
-                                <h5>Grafik provider penyebar spam</h5>
+                                <h4>Grafik provider penyebar spam</h4>
                                 <hr>
                                 <v-card id="chart">
                                     <apexchart type="donut" :options="chartOptions"
@@ -131,20 +131,30 @@
                                 <hr>
                                 <h5>Keterangan Kategori</h5>
                                 <hr>
-                                <v-card id="keterangan">
-                                    <p>Penipuan: Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus
-                                        yang menarik perhatian pengguna.</p>
-                                    <p>Iklan/promosi: Mengandung unsur promosi baik berupa barang maupun jasa seperti
-                                        telemarketer atau kreditur.</p>
-                                    <p>Banking: Menerima informasi mengenai rekening bank miliknya seperti cek saldo,
-                                        informasi transaksi, dan sebagainya.</p>
-                                    <p>Operator: Informasi terkait penggunaan fasilitas yang disediakan provider seperti
-                                        info kuota internet, informasi isi ulang pulsa, dll.</p>
-                                    <p>Unknown: pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur
-                                        penipuan, promosi, banking, dan operator.</p>
-                                    <br>
+                                <v-card >
+                                    <b-list-group-item>
+                                        <h6><b>Penipuan:</b> Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus
+                                            yang menarik perhatian pengguna.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Iklan/Promosi:</b> Iklan/promosi: Mengandung unsur promosi baik berupa barang maupun jasa seperti
+                                            telemarketer atau kreditur.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Banking:</b> Menerima informasi mengenai rekening bank miliknya seperti cek saldo,
+                                            informasi transaksi, dan sebagainya.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Operator:</b> Informasi terkait penggunaan fasilitas yang disediakan provider seperti
+                                            info kuota internet, informasi isi ulang pulsa, dll.</h6>
+                                    </b-list-group-item>
+                                    <b-list-group-item>
+                                        <h6><b>Unknown:</b> pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur
+                                            penipuan, promosi, banking, dan operator.</h6>
+                                    </b-list-group-item>
                                 </v-card>
                             </div>
+                        
                         </div>
                         <br><br>
                         <hr>
@@ -328,6 +338,7 @@
                         }
                     }]
                 },
+                
                 headers: [
                     // { text: 'Id', value: 'id' },
                     {text: 'Nomor telepon', value: 'nomor'},
