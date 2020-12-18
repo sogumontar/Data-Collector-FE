@@ -17,16 +17,7 @@
                                 required>
                         </v-text-field>
                     </v-col>
-                    <v-col cols="12" md="3">
-                        <v-select
-                                v-model="select"
-                                :items="providers"
-                                :rules="[v => !!v || 'Item is required']"
-                                label="Jenis Provider"
-                                required>
-                        </v-select>
-                    </v-col>
-                    <v-col cols="12" md="3">
+                    <v-col cols="12" md="4">
                         <v-text-field
                                 type="number"
                                 v-model="jumlah"
@@ -35,7 +26,7 @@
                                 required>
                         </v-text-field>
                     </v-col>
-                    <v-col cols="12" md="3">
+                    <v-col cols="12" md="4">
                         <v-select
                                 v-model="kategori_select"
                                 :items="kategori"
@@ -44,7 +35,7 @@
                                 required>
                         </v-select>
                     </v-col>
-                    <v-col cols="12" md="3">
+                    <v-col cols="12" md="4">
                         <v-text-field
                                 id = "tanggal"
                                 v-model="tanggal"
@@ -74,16 +65,6 @@
         data() {
             return {
                 select: '',
-                providers: [
-                    'Telkomsel',
-                    'XL Axiata ',
-                    'AXIS',
-                    'Indosat Ooredoo',
-                    'smartfren',
-                    '3',
-                    'Net1 Indonesia',
-                    'BOLT',
-                ],
                 valid: false,
                 nomor: '',
                 nama: '',
@@ -97,7 +78,7 @@
                     'Iklan/promosi',
                     'Banking (transaksi SMS banking)',
                     'Operator (Pesan yang langsung dari operator tertentu)',
-                    'Unknown (Pesan yang tidak menggangu namun nomor pengirim ' +
+                    'Unknown (Pesan yang tidak mengganggu namun nomor pengirim ' +
                     'tidak diketahui)'
                 ],
                 nama_pengirim: '--',
