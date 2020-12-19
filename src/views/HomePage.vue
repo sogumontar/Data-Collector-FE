@@ -162,11 +162,11 @@
         <!--                </div>-->
         <!--                <div class="row">-->
         <!--                    <div class="col-md-6">-->
-        <!--                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
-        <!--                            <a href="#" class="google btn">-->
-        <!--                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
-        <!--                            </a>-->
-        <!--                        </GoogleLogin>-->
+                                <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">
+                                    <a href="#" class="google btn">
+                                        <img src="../../public/g-icon.png" alt=""> Login with Google+
+                                    </a>
+                                </GoogleLogin>
         <!--                    </div>-->
         <!--                    <div class="col-md-6">-->
         <!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
