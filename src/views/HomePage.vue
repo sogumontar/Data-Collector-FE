@@ -121,14 +121,6 @@
                                 </v-card>
                             </div>
                             <div class="col-md-4">
-                                <h4>Grafik provider penyebar spam</h4>
-                                <hr>
-                                <v-card id="chart">
-                                    <apexchart type="donut" :options="chartOptions"
-                                               :series="series"></apexchart>
-                                    <br><br><br><br>
-                                </v-card>
-                                <hr>
                                 <h5>Keterangan Kategori</h5>
                                 <hr>
                                 <v-card >
@@ -153,8 +145,15 @@
                                             penipuan, promosi, banking, dan operator.</h6>
                                     </b-list-group-item>
                                 </v-card>
+                                <h4>Grafik provider penyebar spam</h4>
+                                <hr>
+                                <v-card id="chart">
+                                    <apexchart type="donut" :options="chartOptions"
+                                               :series="series"></apexchart>
+                                    <br><br><br><br>
+                                </v-card>
+                                <hr>
                             </div>
-                        
                         </div>
                         <br><br>
                         <hr>
@@ -188,11 +187,11 @@
         <!--                </div>-->
         <!--                <div class="row">-->
         <!--                    <div class="col-md-6">-->
-                                <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">
-                                    <a href="#" class="google btn">
-                                        <img src="../../public/g-icon.png" alt=""> Login with Google+
-                                    </a>
-                                </GoogleLogin>
+<!--                                <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
+<!--                                    <a href="#" class="google btn">-->
+<!--                                        <img src="../../public/g-icon.png" alt=""> Login with Google+-->
+<!--                                    </a>-->
+<!--                                </GoogleLogin>-->
         <!--                    </div>-->
         <!--                    <div class="col-md-6">-->
         <!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
