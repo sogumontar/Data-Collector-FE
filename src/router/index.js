@@ -5,6 +5,7 @@ import HomePage from "../views/HomePage";
 import About from "../views/About";
 import App from "../App";
 import After from "../views/After";
+import TrendingSpam from "../components/TrendingSpam";
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/trending',
+    name: 'Trending Spam',
+    component: TrendingSpam
   },
   {
     path: '/about',

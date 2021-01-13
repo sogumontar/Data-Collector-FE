@@ -8,6 +8,7 @@ import VueApexCharts from 'vue-apexcharts'
 import './style/bootstrap.min.css';
 import VTooltip from "v-tooltip";
 import mdbClassMixin from "mdbvue/src/mixins/mdbClassMixin";
+import Vuetify from 'vuetify/lib'
 Vue.use(VueApexCharts)
 const gauthOption = {
     clientId: 'CLIENT_ID.apps.googleusercontent.com',
@@ -15,6 +16,7 @@ const gauthOption = {
     prompt: 'select_' +
         'account'
 }
+Vue.use(Vuetify)
 Vue.use(mdbClassMixin);
 Vue.use(VTooltip);
 Vue.config.productionTip = false;

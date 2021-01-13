@@ -58,6 +58,9 @@
                     </v-btn-toggle>
                 </v-row>
             </v-card-title>
+            <div class="container">
+                <TrendingSpam/>
+            </div>
             <br>
             <div v-if="!login">
                 <div v-if="!first">
@@ -213,10 +216,12 @@
     import Home from "./Home";
     import FormSpam from "../components/FormSpam";
     import {mdbIcon} from 'mdbvue';
+    import TrendingSpam from "../components/TrendingSpam";
 
     export default {
         name: 'HomePage',
         components: {
+            TrendingSpam,
             FormSpam,
             Home,
             mdbIcon

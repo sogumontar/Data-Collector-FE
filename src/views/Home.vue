@@ -1,6 +1,9 @@
 <template>
     <div>
         <br>
+        <div class="container">
+            <TrendingSpam/>
+        </div>
         <div class="row">
             <div class="col-md-8">
                 <v-card>
@@ -37,6 +40,7 @@
 </template>
 
 <script>
+    import TrendingSpam from "../components/TrendingSpam";
     export default {
         name: 'Home',
         mounted() {
@@ -130,7 +134,7 @@
                 this.$bvModal.show('bv-modal-example')
             }
         },
-        components: {}
+        components: {TrendingSpam}
     }
 </script>
 <style>
