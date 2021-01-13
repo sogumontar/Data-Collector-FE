@@ -6,8 +6,20 @@
                 <div class="card container" style="background-color: #F2EAEA">
                     <p>{{data.nomor}}</p>
 <!--                    <p>Isi Pe</p>-->
-                    <p align="end">{{data.jumlah}} Laporan</p>
+                    <p align="end" @click="detail(data.nomor)">{{data.jumlah}} Laporan</p>
                 </div>
+            </div>
+            <div>
+                <b-modal id="bv-modal-example1" hide-footer>
+                    <h3 align="center">{{selected}}</h3>
+                    <hr>
+                    <br><br>
+                    <div class="d-block text-center" v-for="(data,index) in details" :key="index">
+                        <p>{{data.isi}}</p>
+                        <p align="end">{{data.tanggal}}</p>
+                        <hr>
+                    </div>
+                </b-modal>
             </div>
 <!--            <div class="col-md-6">-->
 <!--                <div class="card container" style="background-color: #F2EAEA">-->
@@ -30,20 +42,29 @@
         mounted() {
             this.$http.get('/trending/findAll')
                 .then((data) => {
-                    console.log(data.data.data)
                     for (var i in data.data.data) {
-
                         this.trend.push({'nomor': data.data.data[i].nomor, 'jumlah':data.data.data[i].jumlah});
                     }
-                    console.log(this.trend)
                 }).catch(() => {
             });
         },
         data() {
             return {
-                trend:[
-
-                ]
+                trend:[],
+                details:[],
+                selected:''
+            }
+        },
+        methods:{
+            detail(nomor){
+                this.selected=nomor;
+                this.$http.get('/trending/'+nomor)
+                    .then((data) => {
+                        this.$bvModal.show('bv-modal-example1')
+                        console.log(data.data.data)
+                        this.details= data.data.data;
+                    }).catch(() => {
+                });
             }
         }
     }
