@@ -151,7 +151,7 @@
                                     </b-list-group-item>
                                 </v-card>
                                 <br>
-                                <h4>Grafik provider penyebar spam</h4>
+                                <h4>Grafik kategori penyebar spam</h4>
                                 <hr>
                                 <v-card id="chart">
                                     <apexchart type="donut" :options="chartOptions"
