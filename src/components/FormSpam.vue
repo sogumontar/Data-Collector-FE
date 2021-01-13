@@ -58,7 +58,7 @@
         name: "FormSpam",
         data() {
             return {
-                select: '--',
+                select: '',
                 valid: false,
                 nomor: '',
                 nama: '',
