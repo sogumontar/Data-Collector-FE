@@ -22,7 +22,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueApexCharts);
 Vue.config.productionTip = false
 Vue.prototype.$http = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'https://www.portal-desa.web.id/public/api',
 });
 Vue.component('apexchart', VueApexCharts)
 new Vue({
