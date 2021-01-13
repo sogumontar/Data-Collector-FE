@@ -110,7 +110,7 @@
                 } else if(now < picked){
                     alert("Tidak boleh lewat dari tanggal sekarang")
                 } else {
-                    // this.store();
+                    this.store();
                 }
             },
             store(){
