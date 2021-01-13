@@ -13,10 +13,20 @@
                         contain
                         src="../../public/logo.png"
                         transition="scale-transition"
-                        width="100"
+                        width="150"
                 />
                 <div class="container">
                     <h5 style="color: #ffffff">Data Collector TA-07</h5>
+                </div>
+                <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control  red-border" v-model="query"
+                           type="number" min="0" placeholder="Cari nomor telepon"
+                           aria-label="Search">
+                    <div class="input-group-append">
+                                <span class="input-group-text" id="basic-text1">
+                                  <a @click="search">search</a>
+                                </span>
+                    </div>
                 </div>
             </div>
 
@@ -65,16 +75,6 @@
             <div v-if="!login">
                 <div v-if="!first">
                     <div class="container">
-                        <div class="input-group md-form form-sm form-2 pl-0">
-                            <input class="form-control my-0 py-1 red-border" v-model="query"
-                                   type="number" min="0" placeholder="Masukkan nomor telepon"
-                                   aria-label="Search">
-                            <div class="input-group-append">
-                                <span class="input-group-text red lighten-3" id="basic-text1">
-                                  <a @click="search">search</a>
-                                </span>
-                            </div>
-                        </div>
                         <br><br>
                         <div v-if="hit">
                             <h5>Hasil Pencarian</h5>
