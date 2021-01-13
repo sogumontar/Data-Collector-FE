@@ -4,6 +4,7 @@
                 <v-row>
                     <v-col cols="12" md="12">
                         <v-text-field
+                                type="number"
                                 v-model="nomor"
                                 :counter="13"
                                 label="Nomor Pengirim Pesan"
@@ -41,13 +42,6 @@
                                 v-model="tanggal"
                                 type="date"
                                 label="Tanggal Pesan Diterima"
-                                required>
-                        </v-text-field>
-                    </v-col>
-                    <v-col cols="12" md="12">
-                        <v-text-field
-                                v-model="nama_pengirim"
-                                label="Nama Pengirim (Opsional)"
                                 required>
                         </v-text-field>
                     </v-col>
@@ -97,11 +91,7 @@
         },
         methods: {
             submit() {
-                console.log(this.nomor)
                 this.validate();
-            },
-            clear() {
-
             },
             validate() {
                 let today = new Date().toISOString().slice(0, 10)
@@ -111,24 +101,19 @@
                 var m = new Date().getMonth() + 1;
                 var y = new Date().getFullYear();
                 var dateNow = `${y}-${m}-${n>10?n:`0${n}`}`;
-                console.log(dateNow)
                 if (
-                    !this.nomor || !this.isi || !this.select ||
+                    !this.nomor || !this.isi ||
                     !this.kategori_select ||
                     !this.tanggal
                 ) {
                     alert('Semua Field Harus diisi');
-                } else if(dateNow < this.tanggal){
+                } else if(now < picked){
                     alert("Tidak boleh lewat dari tanggal sekarang")
-
                 } else {
-                    this.store();
+                    // this.store();
                 }
             },
             store(){
-                console.log(this.tanggal)
-
-
                 this.$http.post('/store',{
                     "judul": "--",
                     "tanggal": this.tanggal,

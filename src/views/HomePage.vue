@@ -1,19 +1,19 @@
 <template>
     <v-app>
         <v-app-bar
-               app
-               style="color: #ebecf1"
-               color="#1b1c25"
-               dark
+                app
+                style="color: #ebecf1"
+                color="#1b1c25"
+                dark
         >
             <div class="d-flex align-center">
                 <v-img
-                       alt="Vuetify Logo"
-                       class="shrink mr-2"
-                       contain
-                       src="../../public/logo.png"
-                       transition="scale-transition"
-                       width="100"
+                        alt="Vuetify Logo"
+                        class="shrink mr-2"
+                        contain
+                        src="../../public/logo.png"
+                        transition="scale-transition"
+                        width="100"
                 />
                 <div class="container">
                     <h5 style="color: #ffffff">Data Collector TA-07</h5>
@@ -42,8 +42,8 @@
             <v-card-title>
                 <v-row align="center" justify="center">
                     <v-btn-toggle
-                           rounded
-                           background-color="#FFFFFF"
+                            rounded
+                            background-color="#FFFFFF"
                     >
                         <v-btn :color="!first?'#1f4068':'#ffffff'"
                                :class="!first?'white--text' : 'black--text'"
@@ -111,40 +111,46 @@
                             <div class="col-md-8">
                                 <v-card>
                                     <v-data-table
-                                           dense
-                                           @click:row="show"
-                                           :headers="headers"
-                                           :items="desserts"
-                                           :items-per-page="10"
-                                           class="elevation-1"
+                                            dense
+                                            @click:row="show"
+                                            :headers="headers"
+                                            :items="desserts"
+                                            :items-per-page="10"
+                                            class="elevation-1"
                                     ></v-data-table>
                                 </v-card>
                             </div>
                             <div class="col-md-4">
                                 <h5>Keterangan Kategori</h5>
                                 <hr>
-                                <v-card >
+                                <v-card>
                                     <b-list-group-item>
-                                        <h6><b>Penipuan:</b> Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus
+                                        <h6><b>Penipuan:</b> Mengandung unsur-unsur rekayasa tipu muslihat dengan
+                                            serangkaian kasus
                                             yang menarik perhatian pengguna.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
-                                        <h6><b>Iklan/Promosi:</b> Mengandung unsur promosi baik berupa barang maupun jasa seperti
+                                        <h6><b>Iklan/Promosi:</b> Mengandung unsur promosi baik berupa barang maupun
+                                            jasa seperti
                                             telemarketer atau kreditur.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
-                                        <h6><b>Banking:</b> Menerima informasi mengenai rekening bank miliknya seperti cek saldo,
+                                        <h6><b>Banking:</b> Menerima informasi mengenai rekening bank miliknya seperti
+                                            cek saldo,
                                             informasi transaksi, dan sebagainya.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
-                                        <h6><b>Operator:</b> Informasi terkait penggunaan fasilitas yang disediakan provider seperti
+                                        <h6><b>Operator:</b> Informasi terkait penggunaan fasilitas yang disediakan
+                                            provider seperti
                                             info kuota internet, informasi isi ulang pulsa, dll.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
-                                        <h6><b>Unknown:</b> pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur
+                                        <h6><b>Unknown:</b> pesan yang tidak diketahui/tidak dikenal serta bukan
+                                            termasuk sms dengan unsur
                                             penipuan, promosi, banking, dan operator.</h6>
                                     </b-list-group-item>
                                 </v-card>
+                                <br>
                                 <h4>Grafik provider penyebar spam</h4>
                                 <hr>
                                 <v-card id="chart">
@@ -187,11 +193,11 @@
         <!--                </div>-->
         <!--                <div class="row">-->
         <!--                    <div class="col-md-6">-->
-<!--                                <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
-<!--                                    <a href="#" class="google btn">-->
-<!--                                        <img src="../../public/g-icon.png" alt=""> Login with Google+-->
-<!--                                    </a>-->
-<!--                                </GoogleLogin>-->
+        <!--                                <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
+        <!--                                    <a href="#" class="google btn">-->
+        <!--                                        <img src="../../public/g-icon.png" alt=""> Login with Google+-->
+        <!--                                    </a>-->
+        <!--                                </GoogleLogin>-->
         <!--                    </div>-->
         <!--                    <div class="col-md-6">-->
         <!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
@@ -261,30 +267,24 @@
                         var indosat = 0
                         var smartfren = 0
                         var tri = 0
-                        var net = 0
-                        var bolt = 0
                         console.log(data.data.data);
                         for (var i in data.data.data) {
-                            if (data.data.data[i].jenis_provider === "Telkomsel") {
+                            if (data.data.data[i].kategori === "Pesan Penipuan") {
                                 telkomsel++;
-                            } else if (data.data.data[i].jenis_provider === "XL Axiata ") {
+                            } else if (data.data.data[i].kategori === "Gift Card (Penipuan yang mengarahkan ke link tertentu)") {
                                 xl++;
-                            } else if (data.data.data[i].jenis_provider === "AXIS") {
+                            } else if (data.data.data[i].kategori === "Iklan/promosi") {
                                 axis++;
-                            } else if (data.data.data[i].jenis_provider === "Indosat Ooredoo") {
+                            } else if (data.data.data[i].kategori === "Banking (transaksi SMS banking)") {
                                 indosat++;
-                            } else if (data.data.data[i].jenis_provider === "smartfren") {
+                            } else if (data.data.data[i].kategori === "Operator (Pesan yang langsung dari operator tertentu)") {
                                 smartfren++;
-                            } else if (data.data.data[i].jenis_provider === "3") {
+                            } else if (data.data.data[i].kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
                                 tri++;
-                            } else if (data.data.data[i].jenis_provider === "Net1 Indonesia") {
-                                net++;
-                            } else if (data.data.data[i].jenis_provider === "BOLT") {
-                                bolt++;
                             }
                             this.desserts.push(data.data.data[i])
                         }
-                        this.series.push(indosat, xl, axis, telkomsel, smartfren, tri, net, bolt);
+                        this.series.push(telkomsel, xl, axis, indosat, smartfren, tri);
                     }).catch(() => {
                 });
             }
@@ -324,7 +324,13 @@
                             }
                         }
                     },
-                    labels: ["Indosat Oredoo", "XL Axiata", "AXIS", "Telkomsel  ", 'smartfren', '3', 'Net1 Indonesia', 'BOLT'],
+                    labels: [
+                        "Banking",
+                        "Gift Card",
+                        "Iklan/promosi",
+                        "Penipuan",
+                        'Operator',
+                        'Unknown'],
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -337,7 +343,7 @@
                         }
                     }]
                 },
-                
+
                 headers: [
                     // { text: 'Id', value: 'id' },
                     {text: 'Nomor telepon', value: 'nomor'},
