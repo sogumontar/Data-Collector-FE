@@ -70,7 +70,7 @@
                             <div class="container" v-if="shows">
 <!--                                <center><img style="width: 40%; height: 40%"-->
 <!--                                             src="../assets/not-found.png" alt=""></center>-->
-                                <center><h2>Not Found</h2></center>
+                                <center><h2>Hasil Pencarian untuk {{query}} Not Found</h2></center>
                             </div>
                             <div class="container" v-else>
                                 <div>
@@ -116,6 +116,14 @@
                                 </v-card>
                             </div>
                             <div class="col-md-4">
+                                <h4>Grafik kategori penyebar spam</h4>
+                                <hr>
+                                <v-card id="chart">
+                                    <apexchart type="donut" :options="chartOptions"
+                                               :series="series"></apexchart>
+                                    <br><br><br><br>
+                                </v-card>
+                                <hr>
                                 <h5>Keterangan Kategori</h5>
                                 <hr>
                                 <v-card>
@@ -146,14 +154,7 @@
                                     </b-list-group-item>
                                 </v-card>
                                 <br>
-                                <h4>Grafik kategori penyebar spam</h4>
-                                <hr>
-                                <v-card id="chart">
-                                    <apexchart type="donut" :options="chartOptions"
-                                               :series="series"></apexchart>
-                                    <br><br><br><br>
-                                </v-card>
-                                <hr>
+
                             </div>
                         </div>
                         <br><br>
