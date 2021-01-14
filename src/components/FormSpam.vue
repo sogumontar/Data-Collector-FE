@@ -46,7 +46,7 @@
                         </v-text-field>
                     </v-col>
                 </v-row>
-                <v-btn color="#1F4068" align="right" style="color: white; alignment: right" class="mr-4" @click="submit">
+                <v-btn color="#1F4068" align="end" style="color: white; alignment: right" class="mr-4" @click="submit">
                     submit
                 </v-btn>
         </v-form>

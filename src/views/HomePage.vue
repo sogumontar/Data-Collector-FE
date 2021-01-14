@@ -1,34 +1,27 @@
 <template>
     <v-app>
-        <v-app-bar
-                app
-                style="color: #ebecf1"
-                color="#1b1c25"
-                dark
-        >
-            <div class="d-flex align-center">
+            <b-navbar toggleable="lg" type="dark" variant="info">
                 <v-img
                         alt="Vuetify Logo"
                         class="shrink mr-2"
                         contain
-                        src="../../public/logo.png"
+                        src="../../public/logo-2.png"
                         transition="scale-transition"
-                        width="150"
+                        width="100"
                 />
-                <div class="container">
-                    <h5 style="color: #ffffff">Data Collector TA-07</h5>
-                </div>
-                <div class="input-group md-form form-sm form-2 pl-0">
-                    <input class="form-control  red-border" v-model="query"
-                           type="number" min="0" placeholder="Cari nomor telepon"
-                           aria-label="Search">
-                    <div class="input-group-append">
-                                <span class="input-group-text" id="basic-text1">
-                                  <a @click="search">search</a>
-                                </span>
-                    </div>
-                </div>
-            </div>
+                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+                <b-collapse id="nav-collapse" is-nav>
+                    <h3 style="color: white">Data Collector TA-07</h3>
+                    <!-- Right aligned nav items -->
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-form>
+                            <b-form-input size="sm"  type="number" min="0"  class="mr-sm-2"  v-model="query" placeholder="Cari nomor telepon"></b-form-input>
+                            <b-button size="sm" class="my-2 my-sm-0" @click="search" >Search</b-button>
+                        </b-nav-form>
+                    </b-navbar-nav>
+                </b-collapse>
+            </b-navbar>
 
             <v-spacer></v-spacer>
 
@@ -46,7 +39,6 @@
             <!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
             <!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
             <!--            </b-nav-item-dropdown>-->
-        </v-app-bar>
         <br>
         <v-main class="container">
             <v-card-title>
@@ -55,22 +47,19 @@
                             rounded
                             background-color="#FFFFFF"
                     >
-                        <v-btn :color="!first?'#1f4068':'#ffffff'"
-                               :class="!first?'white--text' : 'black--text'"
+                        <v-btn :color="!first?'#D5DCDB':'#ffffff'"
+                               :class="!first?'black--text' : 'black--text'"
                                @click="first = false">
-                            Lihat Data
+                            Laporan Pengguna
                         </v-btn>
-                        <v-btn :color="first?'#1f4068':'#ffffff'"
-                               :class="first?'white--text' : 'black--text'"
+                        <v-btn :color="first?'#D5DCDB':'#ffffff'"
+                               :class="first?'black--text' : 'black--text'"
                                @click="first = true">
-                            Tambah Data
+                            Laporkan SMS Spam
                         </v-btn>
                     </v-btn-toggle>
                 </v-row>
             </v-card-title>
-            <div class="container">
-                <TrendingSpam/>
-            </div>
             <br>
             <div v-if="!login">
                 <div v-if="!first">
@@ -79,8 +68,9 @@
                         <div v-if="hit">
                             <h5>Hasil Pencarian</h5>
                             <div class="container" v-if="shows">
-                                <center><img style="width: 40%; height: 40%"
-                                             src="../assets/not-found.png" alt=""></center>
+<!--                                <center><img style="width: 40%; height: 40%"-->
+<!--                                             src="../assets/not-found.png" alt=""></center>-->
+                                <center><h2>Not Found</h2></center>
                             </div>
                             <div class="container" v-else>
                                 <div>
@@ -106,7 +96,9 @@
                                 </div>
                             </div>
                         </div>
-                        <br><br>
+                        <div class="container" >
+                            <TrendingSpam/>
+                        </div>
                     </div>
                     <div>
                         <br>
@@ -242,6 +234,10 @@
                         console.log(data.data.data.length);
                         if (data.data.data.length === 0) {
                             this.shows = true;
+                            var opt = confirm("Ingin menambahkan data baru?")
+                            if(opt){
+                                this.first=true;
+                            }
                         } else {
                             this.shows = false;
                             this.results = [];

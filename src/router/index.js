@@ -6,6 +6,7 @@ import About from "../views/About";
 import App from "../App";
 import After from "../views/After";
 import TrendingSpam from "../components/TrendingSpam";
+import FormSpam from "../components/FormSpam";
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/after',
     name: 'after',
     component: After
+  },
+  {
+    path: '/formSpam',
+    name: 'Form Spam',
+    component: FormSpam
   },
   {
     path: '/home',
