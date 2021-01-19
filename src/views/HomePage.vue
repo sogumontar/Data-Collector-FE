@@ -96,12 +96,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container" >
-                            <TrendingSpam/>
-                        </div>
+<!--                        <div class="container" >-->
+<!--                            <TrendingSpam/>-->
+<!--                        </div>-->
                     </div>
                     <div>
-                        <br>
+<!--                        <br>-->
                         <div class="row">
                             <div class="col-md-8">
                                 <v-card>
@@ -116,14 +116,14 @@
                                 </v-card>
                             </div>
                             <div class="col-md-4">
-                                <h4>Grafik kategori penyebar spam</h4>
-                                <hr>
-                                <v-card id="chart">
-                                    <apexchart type="donut" :options="chartOptions"
-                                               :series="series"></apexchart>
-                                    <br><br><br><br>
-                                </v-card>
-                                <hr>
+<!--                                <h4>Grafik kategori penyebar spam</h4>-->
+<!--                                <hr>-->
+<!--                                <v-card id="chart">-->
+<!--                                    <apexchart type="donut" :options="chartOptions"-->
+<!--                                               :series="series"></apexchart>-->
+<!--                                    <br><br><br><br>-->
+<!--                                </v-card>-->
+<!--                                <hr>-->
                                 <h5>Keterangan Kategori</h5>
                                 <hr>
                                 <v-card>
