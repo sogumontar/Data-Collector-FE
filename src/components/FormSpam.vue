@@ -1,54 +1,54 @@
 <template>
     <div class="container">
         <v-form v-model="valid">
-                <v-row>
-<!--                    <v-col cols="12" md="12">-->
-<!--                        <v-text-field-->
-<!--                                type="number"-->
-<!--                                v-model="nomor"-->
-<!--                                :counter="13"-->
-<!--                                label="Nomor Pengirim Pesan"-->
-<!--                                >-->
-<!--                        </v-text-field>-->
-<!--                    </v-col>-->
-                    <v-col cols="12" md="12">
-                        <v-text-field
-                                v-model="isi"
-                                label="Isi Pesan"
-                                required>
-                        </v-text-field>
-                    </v-col>
-<!--                    <v-col cols="12" md="4">-->
-<!--                        <v-text-field-->
-<!--                                type="number"-->
-<!--                                v-model="jumlah"-->
-<!--                                label="Jumlah"-->
-<!--                                min="1"-->
-<!--                                >-->
-<!--                        </v-text-field>-->
-<!--                    </v-col>-->
-                    <v-col cols="12" md="4">
-                        <v-select
-                                v-model="kategori_select"
-                                :items="kategori"
-                                :rules="[v => !!v || 'Item is required']"
-                                label="Kategori Pesan"
-                                required>
-                        </v-select>
-                    </v-col>
-<!--                    <v-col cols="12" md="4">-->
-<!--                        <v-text-field-->
-<!--                                id = "tanggal"-->
-<!--                                v-model="tanggal"-->
-<!--                                type="date"-->
-<!--                                label="Tanggal Pesan Diterima"-->
-<!--                                >-->
-<!--                        </v-text-field>-->
-<!--                    </v-col>-->
-                </v-row>
-                <v-btn color="#1F4068" align="end" style="color: white; alignment: right" class="mr-4" @click="submit">
-                    submit
-                </v-btn>
+            <v-row>
+                <v-col cols="12" md="12">
+                    <v-text-field
+                            type="number"
+                            v-model="nomor"
+                            :counter="13"
+                            label="Nomor Pengirim Pesan"
+                            required>
+                    </v-text-field>
+                </v-col>
+                <v-col cols="12" md="12">
+                    <v-text-field
+                            v-model="isi"
+                            label="Isi Pesan"
+                            required>
+                    </v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                    <v-text-field
+                            type="number"
+                            v-model="jumlah"
+                            label="Jumlah"
+                            min="1"
+                            required>
+                    </v-text-field>
+                </v-col>
+                <v-col cols="12" md="4">
+                    <v-select
+                            v-model="kategori_select"
+                            :items="kategori"
+                            :rules="[v => !!v || 'Item is required']"
+                            label="Kategori Pesan"
+                            required>
+                    </v-select>
+                </v-col>
+                <v-col cols="12" md="4">
+                    <v-text-field
+                            id = "tanggal"
+                            v-model="tanggal"
+                            type="date"
+                            label="Tanggal Pesan Diterima"
+                            required>
+                    </v-text-field>
+                </v-col>
+            </v-row>
+            <v-btn color="#1F4068" align="end" style="color: white; alignment: right" class="mr-4" @click="submit">
+                submit
+            </v-btn>
         </v-form>
     </div>
 </template>
@@ -101,29 +101,29 @@
                 var m = new Date().getMonth() + 1;
                 var y = new Date().getFullYear();
                 var dateNow = `${y}-${m}-${n>10?n:`0${n}`}`;
-                // if (
-                //     !this.nomor || !this.isi ||
-                //     !this.kategori_select ||
-                //     !this.tanggal
-                // ) {
-                //     alert('Semua Field Harus diisi');
-                // } else if(now < picked){
-                //     alert("Tidak boleh lewat dari tanggal sekarang")
-                // } else {
+                if (
+                    !this.nomor || !this.isi ||
+                    !this.kategori_select ||
+                    !this.tanggal
+                ) {
+                    alert('Semua Field Harus diisi');
+                } else if(now < picked){
+                    alert("Tidak boleh lewat dari tanggal sekarang")
+                } else {
                     this.store();
-                // }
+                }
             },
             store(){
                 this.$http.post('/store',{
-                    "judul": "--",
-                    "tanggal": this.tanggal,
-                    "isi": this.isi,
-                    "nomor": this.nomor,
-                    "kategori": this.kategori_select,
-                    "id_pengirim": "1",
-                    "nama_pengirim": this.nama_pengirim,
-                    "jenis_provider": this.select,
-                    "jumlah": this.jumlah
+                        "judul": "--",
+                        "tanggal": this.tanggal,
+                        "isi": this.isi,
+                        "nomor": this.nomor,
+                        "kategori": this.kategori_select,
+                        "id_pengirim": "1",
+                        "nama_pengirim": this.nama_pengirim,
+                        "jenis_provider": this.select,
+                        "jumlah": this.jumlah
                     }
                 ).then(data => {
                     alert('Store Data Sukses')
