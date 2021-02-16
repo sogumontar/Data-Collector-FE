@@ -68,12 +68,13 @@
                 kategori_select: '',
                 kategori: [
                     'Penipuan',
-                    'Gift Card (Penipuan yang mengarahkan ke link tertentu)',
+                    // 'Gift Card (Penipuan yang mengarahkan ke link tertentu)',
                     'Iklan/promosi',
-                    'Banking (transaksi SMS banking)',
-                    'Operator (Pesan yang langsung dari operator tertentu)',
+                    // 'Banking (transaksi SMS banking)',
+                    // 'Operator (Pesan yang langsung dari operator tertentu)',
                     'Unknown (Pesan yang tidak mengganggu namun nomor pengirim ' +
-                    'tidak diketahui)'
+                    'tidak diketahui)',
+                    'Ham'
                 ],
                 nama_pengirim: '--',
                 tanggal: '',
