@@ -9,7 +9,7 @@ app.get(/.*/,(req, res) => {
     res.sendfile(`${__dirname}/dist/index.html`)
 });
 
-const port = process.env.PORT || 89912
+const port = process.env.PORT || 8991
 app.listen(port)
 
 console.log('Listening on port : ' + port)
