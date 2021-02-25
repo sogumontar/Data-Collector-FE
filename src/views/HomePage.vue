@@ -158,14 +158,15 @@
                             </div>
                         </div>
                         <br><br>
-                        <hr>
+                        <hr color="black" width="100%">
                         <br><br>
                         <div>
-                            <b-modal id="bv-modal-example" hide-footer>
-                                <div class="d-block text-center">
-                                    <p>{{isi}}</p>
-                                </div>
-                            </b-modal>
+<!--                            <v-col-->
+<!--                                    class="text-center"-->
+<!--                                    cols="12"-->
+<!--                            >-->
+<!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
+<!--                            </v-col>-->
                         </div>
                     </div>
                 </div>
@@ -176,6 +177,7 @@
             <div v-else>
                 <h1>Login</h1>
             </div>
+            <Footer/>
         </v-main>
         <!--        <div>-->
         <!--            <b-modal id="bv-modal-example" hide-footer>-->
