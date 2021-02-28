@@ -138,17 +138,7 @@
                                             telemarketer atau kreditur.</h6>
                                     </b-list-group-item>
                                     <b-list-group-item>
-                                        <h6><b>Banking:</b> Menerima informasi mengenai rekening bank miliknya seperti
-                                            cek saldo,
-                                            informasi transaksi, dan sebagainya.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Operator:</b> Informasi terkait penggunaan fasilitas yang disediakan
-                                            provider seperti
-                                            info kuota internet, informasi isi ulang pulsa, dll.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Unknown:</b> pesan yang tidak diketahui/tidak dikenal serta bukan
+                                        <h6><b>Unknown:</b> Pesan yang tidak diketahui/tidak dikenal serta bukan
                                             termasuk sms dengan unsur
                                             penipuan, promosi, banking, dan operator.</h6>
                                     </b-list-group-item>
@@ -157,17 +147,17 @@
 
                             </div>
                         </div>
-                        <br><br>
-                        <hr color="black" width="100%">
-                        <br><br>
-                        <div>
+                        <br>
+<!--                        <hr color="black" width="100%">-->
+<!--                        <br><br>-->
+<!--                        <div>-->
 <!--                            <v-col-->
 <!--                                    class="text-center"-->
 <!--                                    cols="12"-->
 <!--                            >-->
 <!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
 <!--                            </v-col>-->
-                        </div>
+<!--                        </div>-->
                     </div>
                 </div>
                 <div v-else>
@@ -212,6 +202,7 @@
     import FormSpam from "../components/FormSpam";
     import {mdbIcon} from 'mdbvue';
     import TrendingSpam from "../components/TrendingSpam";
+    import Footer from "../components/Footer";
 
     export default {
         name: 'HomePage',
@@ -219,6 +210,7 @@
             TrendingSpam,
             FormSpam,
             Home,
+            Footer,
             mdbIcon
         },
         computed: {
