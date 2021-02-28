@@ -167,8 +167,8 @@
             <div v-else>
                 <h1>Login</h1>
             </div>
-            <Footer/>
         </v-main>
+        <Footer/>
         <!--        <div>-->
         <!--            <b-modal id="bv-modal-example" hide-footer>-->
         <!--                <div class="d-block text-center">-->
