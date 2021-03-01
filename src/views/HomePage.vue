@@ -1,44 +1,53 @@
 <template>
     <v-app>
-            <b-navbar toggleable="lg" type="dark" variant="info">
-                <v-img
-                        alt="Vuetify Logo"
-                        class="shrink mr-2"
-                        contain
-                        src="../../public/logo-2.png"
-                        transition="scale-transition"
-                        width="100"
-                />
-                <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar toggleable="lg" type="dark" style="background-color: #4788FF;">
+            <v-img
+                    alt="Vuetify Logo"
+                    class="shrink mr-2"
+                    contain
+                    src="../../public/logo-2.png"
+                    transition="scale-transition"
+                    width="100"
+            />
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-                <b-collapse id="nav-collapse" is-nav>
-                    <h3 style="color: white">Data Collector TA-07</h3>
-                    <!-- Right aligned nav items -->
-                    <b-navbar-nav class="ml-auto">
+            <b-collapse id="nav-collapse" is-nav>
+                <h3 style="color: white">Data Collector TA-07</h3>
+                <!-- Right aligned nav items -->
+                <b-navbar-nav class="ml-auto">
+                    <div class="form-group">
                         <b-nav-form>
-                            <b-form-input size="sm"  type="number" min="0"  class="mr-sm-2"  v-model="query" placeholder="Cari nomor telepon"></b-form-input>
-                            <b-button size="sm" class="my-2 my-sm-0" @click="search" >Search</b-button>
+                            <b-form-input size="sm" type="number" min="0" class="" v-model="query"
+                                          placeholder="Cari nomor tselepon"></b-form-input>
+                            <b-button size="sm" class="my-sm-0" @click="search"><i class="fa fa-search"
+                                                                                        style="color: black"></i>
+                            </b-button>
                         </b-nav-form>
-                    </b-navbar-nav>
-                </b-collapse>
-            </b-navbar>
+                    </div>
+                    <!--                        <b-nav-form>-->
+                    <!--                            <b-form-input size="sm"  type="number" min="0"  class="mr-sm-2"  v-model="query" placeholder="Cari nomor telepon"></b-form-input>-->
+                    <!--                            <b-button size="sm" class="my-2 my-sm-0" @click="search" >Search</b-button>-->
+                    <!--                        </b-nav-form>-->
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
 
-            <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-            <!--            <div right v-if="!login">-->
-            <!--                    <GoogleLogin-->
-            <!--                            :params="params"-->
-            <!--                            :onSuccess="onSuccess"-->
-            <!--                            :onFailure="onFailure"-->
-            <!--                            style="margin-top: 17px"-->
-            <!--                    >-->
-            <!--                        Login-->
-            <!--                    </GoogleLogin>-->
-            <!--            </div>-->
-            <!--            <b-nav-item-dropdown text="Lang" right v-else>-->
-            <!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
-            <!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
-            <!--            </b-nav-item-dropdown>-->
+        <!--            <div right v-if="!login">-->
+        <!--                    <GoogleLogin-->
+        <!--                            :params="params"-->
+        <!--                            :onSuccess="onSuccess"-->
+        <!--                            :onFailure="onFailure"-->
+        <!--                            style="margin-top: 17px"-->
+        <!--                    >-->
+        <!--                        Login-->
+        <!--                    </GoogleLogin>-->
+        <!--            </div>-->
+        <!--            <b-nav-item-dropdown text="Lang" right v-else>-->
+        <!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
+        <!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
+        <!--            </b-nav-item-dropdown>-->
         <br>
         <v-main class="container">
             <v-card-title>
@@ -63,13 +72,13 @@
             <br>
             <div v-if="!login">
                 <div v-if="!first">
-                    <div class="container">
+                    <div class="">
                         <br><br>
                         <div v-if="hit">
                             <h5>Hasil Pencarian</h5>
                             <div class="container" v-if="shows">
-<!--                                <center><img style="width: 40%; height: 40%"-->
-<!--                                             src="../assets/not-found.png" alt=""></center>-->
+                                <!--                                <center><img style="width: 40%; height: 40%"-->
+                                <!--                                             src="../assets/not-found.png" alt=""></center>-->
                                 <center><h2>Hasil Pencarian untuk {{query}} Not Found</h2></center>
                             </div>
                             <div class="container" v-else>
@@ -96,14 +105,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container" >
+                        <div class="row">
+                            <div class="col-md-8">
                             <TrendingSpam/>
+                            </div>
+                            <div class="col-md-4">
+                                <h5>Keterangan Kategori</h5>
+                                <hr>
+                                <v-card>
+                                    <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
+                                                <h6><span style="padding-right: 10px; color: orange" ><i class="fa fa-circle" aria-hidden="true"></i></span><b>{{kategori.title}}</b>
+                                                    {{kategori.deskripsi}}</h6>
+                                    </b-list-group-item>
+                                </v-card>
+                                <br>
+                            </div>
                         </div>
                     </div>
                     <div>
-<!--                        <br>-->
+                        <!--                        <br>-->
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <v-card>
                                     <v-data-table
                                             dense
@@ -115,49 +137,28 @@
                                     ></v-data-table>
                                 </v-card>
                             </div>
-                            <div class="col-md-4">
-<!--                                <h4>Grafik kategori penyebar spam</h4>-->
-<!--                                <hr>-->
-<!--                                <v-card id="chart">-->
-<!--                                    <apexchart type="donut" :options="chartOptions"-->
-<!--                                               :series="series"></apexchart>-->
-<!--                                    <br><br><br><br>-->
-<!--                                </v-card>-->
-<!--                                <hr>-->
-                                <h5>Keterangan Kategori</h5>
-                                <hr>
-                                <v-card>
-                                    <b-list-group-item>
-                                        <h6><b>Penipuan:</b> Mengandung unsur-unsur rekayasa tipu muslihat dengan
-                                            serangkaian kasus
-                                            yang menarik perhatian pengguna.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Iklan/Promosi:</b> Mengandung unsur promosi baik berupa barang maupun
-                                            jasa seperti
-                                            telemarketer atau kreditur.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Unknown:</b> Pesan yang tidak diketahui/tidak dikenal serta bukan
-                                            termasuk sms dengan unsur
-                                            penipuan, promosi, banking, dan operator.</h6>
-                                    </b-list-group-item>
-                                </v-card>
-                                <br>
-
-                            </div>
+<!--                            <div class="col-md-4">-->
+                                <!--                                <h4>Grafik kategori penyebar spam</h4>-->
+                                <!--                                <hr>-->
+                                <!--                                <v-card id="chart">-->
+                                <!--                                    <apexchart type="donut" :options="chartOptions"-->
+                                <!--                                               :series="series"></apexchart>-->
+                                <!--                                    <br><br><br><br>-->
+                                <!--                                </v-card>-->
+                                <!--                                <hr>-->
+<!--                            </div>-->
                         </div>
                         <br>
-<!--                        <hr color="black" width="100%">-->
-<!--                        <br><br>-->
-<!--                        <div>-->
-<!--                            <v-col-->
-<!--                                    class="text-center"-->
-<!--                                    cols="12"-->
-<!--                            >-->
-<!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
-<!--                            </v-col>-->
-<!--                        </div>-->
+                        <!--                        <hr color="black" width="100%">-->
+                        <!--                        <br><br>-->
+                        <!--                        <div>-->
+                        <!--                            <v-col-->
+                        <!--                                    class="text-center"-->
+                        <!--                                    cols="12"-->
+                        <!--                            >-->
+                        <!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
+                        <!--                            </v-col>-->
+                        <!--                        </div>-->
                     </div>
                 </div>
                 <div v-else>
@@ -181,11 +182,11 @@
         <!--                </div>-->
         <!--                <div class="row">-->
         <!--                    <div class="col-md-6">-->
-<!--                                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
-<!--                                            <a href="#" class="google btn">-->
-<!--                                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
-<!--                                            </a>-->
-<!--                                        </GoogleLogin>-->
+        <!--                                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
+        <!--                                            <a href="#" class="google btn">-->
+        <!--                                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
+        <!--                                            </a>-->
+        <!--                                        </GoogleLogin>-->
         <!--                    </div>-->
         <!--                    <div class="col-md-6">-->
         <!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
@@ -230,8 +231,8 @@
                         if (data.data.data.length === 0) {
                             this.shows = true;
                             var opt = confirm("Ingin menambahkan data baru?")
-                            if(opt){
-                                this.first=true;
+                            if (opt) {
+                                this.first = true;
                             }
                         } else {
                             this.shows = false;
@@ -293,6 +294,23 @@
                     height: 50,
                     longtitle: true
                 },
+                kategori:[
+                    {
+                        'color': "black",
+                        'title':"Penipuan",
+                        'deskripsi': "Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus yang menarik perhatian pengguna."
+                    },
+                    {
+                        'color': "black",
+                        'title':"Iklan/Promosi",
+                        'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
+                    },
+                    {
+                        'color': "black",
+                        'title':"Unknown",
+                        'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
+                    }
+                ],
                 results: [],
                 timer: null,
                 currentIndex: 0,
@@ -357,6 +375,48 @@
     }
 </script>
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Style the search field */
+    form.example input[type=text] {
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+    }
+
+    /* Style the submit button */
+    form.example button {
+        float: left;
+        width: 20%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none; /* Prevent double borders */
+        cursor: pointer;
+    }
+
+    form.example button:hover {
+        background: #0b7dda;
+    }
+
+    /* Clear floats */
+    form.example::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .inputField {
+        flex: 1;
+    }
+
     .google {
         background-color: #bebebe;
         color: white;

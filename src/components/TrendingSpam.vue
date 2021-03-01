@@ -1,11 +1,12 @@
 <template>
     <div>
-        <h3>TRENDING SMS SPAM</h3>
+        <h3 style="font-weight: bolder">TRENDING SMS SPAM</h3>
         <div class="row">
-            <div class="col-md-6" v-for="data in trend" :key="data.nomor">
+            <div class="col-md-12" v-for="data in trend" :key="data.nomor">
                 <div class="card container" style="height:85%;background-color: #F2EAEA">
-                    <p>{{data.nomor}}</p>
-                                        <p>{{data.isi}}</p>
+                    <p>
+                        <span style="padding-right: 10px; color: orange" ><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}</p>
+                    <p>{{data.isi}}</p>
                     <p align="end" @click="detail(data.nomor)">{{data.jumlah}} Laporan</p>
                 </div>
             </div>
@@ -42,7 +43,21 @@
             this.$http.get('/trending/findAll')
                 .then((data) => {
                     for (var i in data.data.data) {
-                        this.trend.push({'nomor': data.data.data[i].nomor, 'jumlah': data.data.data[i].jumlah, 'isi':data.data.data[i].isi});
+                        if (i < data.data.data.length / 2) {
+                            this.trend.push({
+                                'nomor': data.data.data[i].nomor,
+                                'jumlah': data.data.data[i].jumlah,
+                                'isi': data.data.data[i].isi,
+                                'position': i
+                            });
+                        } else {
+                            this.trend2.push({
+                                'nomor': data.data.data[i].nomor,
+                                'jumlah': data.data.data[i].jumlah,
+                                'isi': data.data.data[i].isi,
+                                'position': i
+                            });
+                        }
                     }
                 }).catch(() => {
             });
@@ -50,6 +65,7 @@
         data() {
             return {
                 trend: [],
+                trend2: [],
                 details: [],
                 selected: ''
             }

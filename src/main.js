@@ -9,6 +9,12 @@ import './style/bootstrap.min.css';
 import VTooltip from "v-tooltip";
 import mdbClassMixin from "mdbvue/src/mixins/mdbClassMixin";
 import Vuetify from 'vuetify/lib'
+import "font-awesome/css/font-awesome.min.css";
+
+//defined as global component
+Vue.component('VueFontawesome', require('vue-fontawesome-icon/VueFontawesome.vue').default);
+
+
 Vue.use(VueApexCharts)
 const gauthOption = {
     clientId: 'CLIENT_ID.apps.googleusercontent.com',
