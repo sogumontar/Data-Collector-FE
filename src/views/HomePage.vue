@@ -18,8 +18,8 @@
                     <div class="form-group">
                         <b-nav-form>
                             <b-form-input size="sm" type="number" min="0" class="" v-model="query"
-                                          placeholder="Cari nomor tselepon"></b-form-input>
-                            <b-button size="sm" class="my-sm-0" @click="search"><i class="fa fa-search"
+                                          placeholder="Cari nomor telepon"></b-form-input>
+                            <b-button size="sm" class="my-sm-0" @click="search" style="background-color: white"><i class="fa fa-search"
                                                                                         style="color: black"></i>
                             </b-button>
                         </b-nav-form>
@@ -56,13 +56,13 @@
                             rounded
                             background-color="#FFFFFF"
                     >
-                        <v-btn :color="!first?'#D5DCDB':'#ffffff'"
-                               :class="!first?'black--text' : 'black--text'"
+                        <v-btn :color="!first?'#0560AA':'#ffffff'"
+                               :class="!first?'white--text' : 'black--text'"
                                @click="first = false">
                             Laporan Pengguna
                         </v-btn>
-                        <v-btn :color="first?'#D5DCDB':'#ffffff'"
-                               :class="first?'black--text' : 'black--text'"
+                        <v-btn :color="first?'#0560AA':'#ffffff'"
+                               :class="first?'white--text' : 'black--text'"
                                @click="first = true">
                             Laporkan SMS Spam
                         </v-btn>
@@ -114,7 +114,7 @@
                                 <hr>
                                 <v-card>
                                     <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
-                                                <h6><span style="padding-right: 10px; color: orange" ><i class="fa fa-circle" aria-hidden="true"></i></span><b>{{kategori.title}}</b>
+                                                <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}" ><i class="fa fa-circle" aria-hidden="true"></i></span><b>{{kategori.title}}</b>
                                                     {{kategori.deskripsi}}</h6>
                                     </b-list-group-item>
                                 </v-card>
@@ -301,12 +301,12 @@
                         'deskripsi': "Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus yang menarik perhatian pengguna."
                     },
                     {
-                        'color': "black",
+                        'color': "orange",
                         'title':"Iklan/Promosi",
                         'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
                     },
                     {
-                        'color': "black",
+                        'color': "grey",
                         'title':"Unknown",
                         'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
                     }
