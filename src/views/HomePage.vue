@@ -305,11 +305,11 @@
                         'title':"Iklan/Promosi",
                         'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
                     },
-                    {
-                        'color': "grey",
-                        'title':"Unknown",
-                        'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
-                    }
+                    //{
+                    //    'color': "grey",
+                   //     'title':"Unknown",
+                    //    'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
+                    //}
                 ],
                 results: [],
                 timer: null,
