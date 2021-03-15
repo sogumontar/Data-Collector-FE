@@ -56,11 +56,11 @@
                             rounded
                             background-color="#FFFFFF"
                     >
-                        <v-btn :color="!first?'#0560AA':'#ffffff'"
+                        <!-- <v-btn :color="!first?'#0560AA':'#ffffff'"
                                :class="!first?'white--text' : 'black--text'"
                                @click="first = false">
                             Laporan Pengguna
-                        </v-btn>
+                        </v-btn> -->
                         <v-btn :color="first?'#0560AA':'#ffffff'"
                                :class="first?'white--text' : 'black--text'"
                                @click="first = true">
