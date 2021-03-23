@@ -274,14 +274,14 @@
                         var tri = 0
                         // console.log(data.data.data);
                         for (var i in data.data.data) {
-                            let obj = data.data.data[i];
+                            var obj = data.data.data[i];
                             if (obj.kategori === "Penipuan") {
-                                obj.colour = 'black'
+                                obj.colour = '#000000'
                                 telkomsel++;
                             } else if (obj.kategori === "Gift Card (Penipuan yang mengarahkan ke link tertentu)") {
                                 xl++;
                             } else if (obj.kategori === "Iklan/promosi") {
-                                obj.colour = 'orange'
+                                obj.colour = '#ECA336'
                                 axis++;
                             } else if (obj.kategori === "Banking (transaksi SMS banking)") {
                                 indosat++;
@@ -290,7 +290,7 @@
                             } else if (obj.kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
                                 tri++;
                             }else {
-                                obj.colour = 'blue'
+                                obj.colour = '#4788FF'
                             }
                             this.desserts.push(obj)
                         }
