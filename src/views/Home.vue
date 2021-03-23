@@ -1,6 +1,9 @@
 <template>
     <div>
         <br>
+        <div class="container">
+            <TrendingSpam/>
+        </div>
         <div class="row">
             <div class="col-md-8">
                 <v-card>
@@ -15,10 +18,10 @@
                 </v-card>
             </div>
             <div class="col-md-4">
-                <h5>Grafik provider penyebar spam</h5>
+                <h5>Grafik provider penyebar spams</h5>
                 <hr>
                 <v-card id="chart">
-                    <apexchart type="donut" :options="chartOptions" :series="series"></apexchart>
+                    <apexchart type="donut" :options="chartOptions" :series="series"/>
                     <br><br><br><br>
                 </v-card>
             </div>
@@ -37,6 +40,7 @@
 </template>
 
 <script>
+    import TrendingSpam from "../components/TrendingSpam";
     export default {
         name: 'Home',
         mounted() {
@@ -52,26 +56,22 @@
                     var bolt = 0
                     console.log(data.data.data);
                     for (var i in data.data.data) {
-                        if (data.data.data[i].jenis_provider === "Telkomsel") {
+                        if (data.data.data[i].kategori === "Pesan Penipuan") {
                             telkomsel++;
-                        } else if (data.data.data[i].jenis_provider === "XL Axiata ") {
+                        } else if (data.data.data[i].jenis_provider === "Gift Card (Penipuan yang mengarahkan ke link tertentu)") {
                             xl++;
-                        } else if (data.data.data[i].jenis_provider === "AXIS") {
+                        } else if (data.data.data[i].jenis_provider === "Iklan/promosi") {
                             axis++;
-                        } else if (data.data.data[i].jenis_provider === "Indosat Ooredoo") {
+                        } else if (data.data.data[i].jenis_provider === "Banking (transaksi SMS banking)") {
                             indosat++;
-                        } else if (data.data.data[i].jenis_provider === "smartfren") {
+                        } else if (data.data.data[i].jenis_provider === "Operator (Pesan yang langsung dari operator tertentu)") {
                             smartfren++;
-                        } else if (data.data.data[i].jenis_provider === "3") {
+                        } else if (data.data.data[i].jenis_provider === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui") {
                             tri++;
-                        } else if (data.data.data[i].jenis_provider === "Net1 Indonesia") {
-                            net++;
-                        } else if (data.data.data[i].jenis_provider === "BOLT") {
-                            bolt++;
                         }
                         this.desserts.push(data.data.data[i])
                     }
-                    this.series.push(indosat, xl, axis, telkomsel, smartfren, tri, net, bolt);
+                    this.series.push(indosat, xl, axis, telkomsel, smartfren, tri);
                 }).catch(() => {
             });
         },
@@ -95,7 +95,13 @@
                             }
                         }
                     },
-                    labels: ["Indosat Oredoo", "XL Axiata", "AXIS", "Telkomsel  ", 'smartfren', '3', 'Net1 Indonesia', 'BOLT'],
+                    labels: [
+                        "Penipuan",
+                        "Gift Card (Penipuan yang mengarahkan ke link tertentu)",
+                        "Iklan/promosi",
+                        "Banking (transaksi SMS banking)",
+                        'Operator (Pesan yang langsung dari operator tertentu)',
+                        'Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui'],
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -128,7 +134,7 @@
                 this.$bvModal.show('bv-modal-example')
             }
         },
-        components: {}
+        components: {TrendingSpam}
     }
 </script>
 <style>

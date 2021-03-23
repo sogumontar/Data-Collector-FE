@@ -1,59 +1,70 @@
 <template>
     <v-app>
-        <v-app-bar
-               app
-               style="color: #ebecf1"
-               color="#1b1c25"
-               dark
-        >
-            <div class="d-flex align-center">
-                <v-img
-                       alt="Vuetify Logo"
-                       class="shrink mr-2"
-                       contain
-                       src="../../public/logo.png"
-                       transition="scale-transition"
-                       width="100"
-                />
-                <div class="container">
-                    <h5 style="color: #ffffff">Data Collector TA-07</h5>
-                </div>
-            </div>
+        <b-navbar toggleable="lg" type="dark" style="background-color: #4788FF;">
+            <v-img
+                    alt="Vuetify Logo"
+                    class="shrink mr-2"
+                    contain
+                    src="../../public/logo-2.png"
+                    transition="scale-transition"
+                    width="100"
+            />
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-            <v-spacer></v-spacer>
+            <b-collapse id="nav-collapse" is-nav>
+                <h3 style="color: white">Data Collector TA-07</h3>
+                <!-- Right aligned nav items -->
+                <b-navbar-nav class="ml-auto">
+                    <div class="form-group">
+                        <b-nav-form>
+                            <b-form-input size="sm" type="number" min="0" class="" v-model="query"
+                                          placeholder="Cari nomor telepon"></b-form-input>
+                            <b-button size="sm" class="my-sm-0" @click="search" style="background-color: white"><i class="fa fa-search"
+                                                                                        style="color: black"></i>
+                            </b-button>
+                        </b-nav-form>
+                    </div>
+                    <!--                        <b-nav-form>-->
+                    <!--                            <b-form-input size="sm"  type="number" min="0"  class="mr-sm-2"  v-model="query" placeholder="Cari nomor telepon"></b-form-input>-->
+                    <!--                            <b-button size="sm" class="my-2 my-sm-0" @click="search" >Search</b-button>-->
+                    <!--                        </b-nav-form>-->
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
 
-            <!--            <div right v-if="!login">-->
-            <!--                    <GoogleLogin-->
-            <!--                            :params="params"-->
-            <!--                            :onSuccess="onSuccess"-->
-            <!--                            :onFailure="onFailure"-->
-            <!--                            style="margin-top: 17px"-->
-            <!--                    >-->
-            <!--                        Login-->
-            <!--                    </GoogleLogin>-->
-            <!--            </div>-->
-            <!--            <b-nav-item-dropdown text="Lang" right v-else>-->
-            <!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
-            <!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
-            <!--            </b-nav-item-dropdown>-->
-        </v-app-bar>
+        <v-spacer></v-spacer>
+
+        <!--            <div right v-if="!login">-->
+        <!--                    <GoogleLogin-->
+        <!--                            :params="params"-->
+        <!--                            :onSuccess="onSuccess"-->
+        <!--                            :onFailure="onFailure"-->
+        <!--                            style="margin-top: 17px"-->
+        <!--                    >-->
+        <!--                        Login-->
+        <!--                    </GoogleLogin>-->
+        <!--            </div>-->
+        <!--            <b-nav-item-dropdown text="Lang" right v-else>-->
+        <!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
+        <!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
+        <!--            </b-nav-item-dropdown>-->
         <br>
         <v-main class="container">
             <v-card-title>
                 <v-row align="center" justify="center">
                     <v-btn-toggle
-                           rounded
-                           background-color="#FFFFFF"
+                            rounded
+                            background-color="#FFFFFF"
                     >
-                        <v-btn :color="!first?'#1f4068':'#ffffff'"
+                        <v-btn :color="!first?'#0560AA':'#ffffff'"
                                :class="!first?'white--text' : 'black--text'"
                                @click="first = false">
-                            Lihat Data
+                            Laporan Pengguna
                         </v-btn>
-                        <v-btn :color="first?'#1f4068':'#ffffff'"
+                        <v-btn :color="first?'#0560AA':'#ffffff'"
                                :class="first?'white--text' : 'black--text'"
                                @click="first = true">
-                            Tambah Data
+                            Laporkan SMS Spam
                         </v-btn>
                     </v-btn-toggle>
                 </v-row>
@@ -61,23 +72,14 @@
             <br>
             <div v-if="!login">
                 <div v-if="!first">
-                    <div class="container">
-                        <div class="input-group md-form form-sm form-2 pl-0">
-                            <input class="form-control my-0 py-1 red-border" v-model="query"
-                                   type="number" min="0" placeholder="Masukkan nomor telepon"
-                                   aria-label="Search">
-                            <div class="input-group-append">
-                                <span class="input-group-text red lighten-3" id="basic-text1">
-                                  <a @click="search">search</a>
-                                </span>
-                            </div>
-                        </div>
+                    <div class="">
                         <br><br>
                         <div v-if="hit">
                             <h5>Hasil Pencarian</h5>
                             <div class="container" v-if="shows">
-                                <center><img style="width: 40%; height: 40%"
-                                             src="../assets/not-found.png" alt=""></center>
+                                <!--                                <center><img style="width: 40%; height: 40%"-->
+                                <!--                                             src="../assets/not-found.png" alt=""></center>-->
+                                <center><h2>Hasil Pencarian untuk {{query}} Not Found</h2></center>
                             </div>
                             <div class="container" v-else>
                                 <div>
@@ -103,67 +105,68 @@
                                 </div>
                             </div>
                         </div>
-                        <br><br>
-                    </div>
-                    <div>
-                        <br>
                         <div class="row">
                             <div class="col-md-8">
-                                <v-card>
-                                    <v-data-table
-                                           dense
-                                           @click:row="show"
-                                           :headers="headers"
-                                           :items="desserts"
-                                           :items-per-page="10"
-                                           class="elevation-1"
-                                    ></v-data-table>
-                                </v-card>
+                            <TrendingSpam/>
                             </div>
                             <div class="col-md-4">
-                                <h4>Grafik provider penyebar spam</h4>
+                                <h5>Keterangan Kategori</h5>
                                 <hr>
-                                <v-card id="chart">
-                                    <apexchart type="donut" :options="chartOptions"
-                                               :series="series"></apexchart>
-                                    <br><br><br><br>
+                                <v-card>
+                                    <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
+                                                <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}" ><i class="fa fa-circle" aria-hidden="true"></i></span><b>{{kategori.title}}</b>
+                                                    {{kategori.deskripsi}}</h6>
+                                    </b-list-group-item>
                                 </v-card>
-                                <h4>Keterangan Kategori</h4>
-                                <hr>
-                                <v-card >
-                                    <b-list-group-item>
-                                        <h6><b>Penipuan</b> -> Pesan ini mengandung unsur kebohongan yang menjanjikan sesuatu hadiah untuk menarik perhatian pengguna.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Gift Card</b> -> Pesan ini berisikan tentang hadiah yang didapatkan dengan mengklik link yang diberikan dari suatu perusahaan terkenal sepeti Shopee, Lazada,dan lain-lain.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Iklan/Promosi</b> -> Pesan ini berisikan tentang promosi suatu barang atau jasa seperti pinjaman online, dan lain-lain.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Banking</b> -> Pesan ini berisikan tentang informasi rekening pribadi, misalnya mengecek transaksi, cek saldo dan lain-lain.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Operator</b> -> Pesan ini berisikan informasi tentang provider yang dimiliki seperti, sisa kuota internet, isi ulang pulsa, promo harga kuota internet, dan lain-lain.</h6>
-                                    </b-list-group-item>
-                                    <b-list-group-item>
-                                        <h6><b>Unknown</b> -> Pesan yang tidak diketahui atau nomor yang tidak dikenal dan juga tidak termasuk unsur penipuan, gift card, promosi, banking dan operator. </h6>
-                                    </b-list-group-item>
-                                    
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!--                        <br>-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <v-card>
+                                    <v-data-table
+                                            dense
+                                            @click:row="show"
+                                            :headers="headers"
+                                            :items="desserts"
+                                            :items-per-page="10"
+                                            class="elevation-1"
+                                    ><template v-slot:item="{ item }">
+                                        <tr>
+                                            <td><span v-bind:style="{color:item.colour}" style="padding-right: 10px;"><i class="fa fa-circle" aria-hidden="true"></i></span></td>
+                                            <td >{{ item.nomor }}</td>
+                                            <td >{{ item.jenis_provider }}</td>
+                                            <td >{{ item.isi }}</td>
+                                            <td >{{ item.tanggal }}</td>
+                                        </tr>
+                                    </template></v-data-table>
                                 </v-card>
                             </div>
-                        
+<!--                            <div class="col-md-4">-->
+                                <!--                                <h4>Grafik kategori penyebar spam</h4>-->
+                                <!--                                <hr>-->
+                                <!--                                <v-card id="chart">-->
+                                <!--                                    <apexchart type="donut" :options="chartOptions"-->
+                                <!--                                               :series="series"></apexchart>-->
+                                <!--                                    <br><br><br><br>-->
+                                <!--                                </v-card>-->
+                                <!--                                <hr>-->
+<!--                            </div>-->
                         </div>
-                        <br><br>
-                        <hr>
-                        <br><br>
-                        <div>
-                            <b-modal id="bv-modal-example" hide-footer>
-                                <div class="d-block text-center">
-                                    <p>{{isi}}</p>
-                                </div>
-                            </b-modal>
-                        </div>
+                        <br>
+                        <!--                        <hr color="black" width="100%">-->
+                        <!--                        <br><br>-->
+                        <!--                        <div>-->
+                        <!--                            <v-col-->
+                        <!--                                    class="text-center"-->
+                        <!--                                    cols="12"-->
+                        <!--                            >-->
+                        <!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
+                        <!--                            </v-col>-->
+                        <!--                        </div>-->
                     </div>
                 </div>
                 <div v-else>
@@ -174,6 +177,7 @@
                 <h1>Login</h1>
             </div>
         </v-main>
+        <Footer/>
         <!--        <div>-->
         <!--            <b-modal id="bv-modal-example" hide-footer>-->
         <!--                <div class="d-block text-center">-->
@@ -186,11 +190,11 @@
         <!--                </div>-->
         <!--                <div class="row">-->
         <!--                    <div class="col-md-6">-->
-        <!--                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
-        <!--                            <a href="#" class="google btn">-->
-        <!--                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
-        <!--                            </a>-->
-        <!--                        </GoogleLogin>-->
+        <!--                                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
+        <!--                                            <a href="#" class="google btn">-->
+        <!--                                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
+        <!--                                            </a>-->
+        <!--                                        </GoogleLogin>-->
         <!--                    </div>-->
         <!--                    <div class="col-md-6">-->
         <!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
@@ -206,12 +210,16 @@
     import Home from "./Home";
     import FormSpam from "../components/FormSpam";
     import {mdbIcon} from 'mdbvue';
+    import TrendingSpam from "../components/TrendingSpam";
+    import Footer from "../components/Footer";
 
     export default {
         name: 'HomePage',
         components: {
+            TrendingSpam,
             FormSpam,
             Home,
+            Footer,
             mdbIcon
         },
         computed: {
@@ -230,6 +238,10 @@
                         console.log(data.data.data.length);
                         if (data.data.data.length === 0) {
                             this.shows = true;
+                            var opt = confirm("Ingin menambahkan data baru?")
+                            if (opt) {
+                                this.first = true;
+                            }
                         } else {
                             this.shows = false;
                             this.results = [];
@@ -260,30 +272,29 @@
                         var indosat = 0
                         var smartfren = 0
                         var tri = 0
-                        var net = 0
-                        var bolt = 0
-                        console.log(data.data.data);
+                        // console.log(data.data.data);
                         for (var i in data.data.data) {
-                            if (data.data.data[i].jenis_provider === "Telkomsel") {
+                            var obj = data.data.data[i];
+                            if (obj.kategori === "Penipuan") {
+                                obj.colour = '#000000'
                                 telkomsel++;
-                            } else if (data.data.data[i].jenis_provider === "XL Axiata ") {
+                            } else if (obj.kategori === "Gift Card (Penipuan yang mengarahkan ke link tertentu)") {
                                 xl++;
-                            } else if (data.data.data[i].jenis_provider === "AXIS") {
+                            } else if (obj.kategori === "Iklan/promosi") {
+                                obj.colour = '#ECA336'
                                 axis++;
-                            } else if (data.data.data[i].jenis_provider === "Indosat Ooredoo") {
+                            } else if (obj.kategori === "Banking (transaksi SMS banking)") {
                                 indosat++;
-                            } else if (data.data.data[i].jenis_provider === "smartfren") {
+                            } else if (obj.kategori === "Operator (Pesan yang langsung dari operator tertentu)") {
                                 smartfren++;
-                            } else if (data.data.data[i].jenis_provider === "3") {
+                            } else if (obj.kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
                                 tri++;
-                            } else if (data.data.data[i].jenis_provider === "Net1 Indonesia") {
-                                net++;
-                            } else if (data.data.data[i].jenis_provider === "BOLT") {
-                                bolt++;
+                            }else {
+                                obj.colour = '#4788FF'
                             }
-                            this.desserts.push(data.data.data[i])
+                            this.desserts.push(obj)
                         }
-                        this.series.push(indosat, xl, axis, telkomsel, smartfren, tri, net, bolt);
+                        this.series.push(telkomsel, xl, axis, indosat, smartfren, tri);
                     }).catch(() => {
                 });
             }
@@ -296,6 +307,23 @@
                     height: 50,
                     longtitle: true
                 },
+                kategori:[
+                    {
+                        'color': "black",
+                        'title':"Penipuan",
+                        'deskripsi': "Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus yang menarik perhatian pengguna."
+                    },
+                    {
+                        'color': "orange",
+                        'title':"Iklan/Promosi",
+                        'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
+                    },
+                    {
+                        'color': "grey",
+                        'title':"Unknown",
+                        'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
+                    }
+                ],
                 results: [],
                 timer: null,
                 currentIndex: 0,
@@ -323,7 +351,13 @@
                             }
                         }
                     },
-                    labels: ["Indosat Oredoo", "XL Axiata", "AXIS", "Telkomsel  ", 'smartfren', '3', 'Net1 Indonesia', 'BOLT'],
+                    labels: [
+                        "Banking",
+                        "Gift Card",
+                        "Iklan/promosi",
+                        "Penipuan",
+                        'Operator',
+                        'Unknown'],
                     responsive: [{
                         breakpoint: 480,
                         options: {
@@ -336,14 +370,14 @@
                         }
                     }]
                 },
-                
+
                 headers: [
-                    // { text: 'Id', value: 'id' },
+                    { text: '', value: 'colour' },
                     {text: 'Nomor telepon', value: 'nomor'},
-                    // { text: 'Isi Pesan', value: 'isi' },
                     {text: 'Jenis Provider', value: 'jenis_provider'},
-                    {text: 'Jumlah', value: 'jumlah'},
-                    {text: 'Kategori', value: 'kategori'},
+                    { text: 'Isi Pesan', value: 'isi' },
+                    // {text: 'Jumlah', value: 'jumlah'},
+                    // {text: 'Kategori', value: 'kategori'},
                     // { text: 'Nama Pengirim', value: 'nama_pengirim' },
                     {text: 'Tanggal pengiriman', value: 'tanggal'},
                 ],
@@ -354,6 +388,48 @@
     }
 </script>
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Style the search field */
+    form.example input[type=text] {
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+    }
+
+    /* Style the submit button */
+    form.example button {
+        float: left;
+        width: 20%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none; /* Prevent double borders */
+        cursor: pointer;
+    }
+
+    form.example button:hover {
+        background: #0b7dda;
+    }
+
+    /* Clear floats */
+    form.example::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .inputField {
+        flex: 1;
+    }
+
     .google {
         background-color: #bebebe;
         color: white;
