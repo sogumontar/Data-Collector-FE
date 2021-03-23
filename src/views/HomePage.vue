@@ -134,7 +134,15 @@
                                             :items="desserts"
                                             :items-per-page="10"
                                             class="elevation-1"
-                                    ></v-data-table>
+                                    ><template v-slot:item="{ item }">
+                                        <tr>
+                                            <td><span v-bind:style="{color:item.colour}" style="padding-right: 10px;"><i class="fa fa-circle" aria-hidden="true"></i></span></td>
+                                            <td >{{ item.nomor }}</td>
+                                            <td >{{ item.jenis_provider }}</td>
+                                            <td >{{ item.isi }}</td>
+                                            <td >{{ item.tanggal }}</td>
+                                        </tr>
+                                    </template></v-data-table>
                                 </v-card>
                             </div>
 <!--                            <div class="col-md-4">-->
@@ -264,22 +272,27 @@
                         var indosat = 0
                         var smartfren = 0
                         var tri = 0
-                        console.log(data.data.data);
+                        // console.log(data.data.data);
                         for (var i in data.data.data) {
-                            if (data.data.data[i].kategori === "Pesan Penipuan") {
+                            let obj = data.data.data[i];
+                            if (obj.kategori === "Penipuan") {
+                                obj.colour = 'black'
                                 telkomsel++;
-                            } else if (data.data.data[i].kategori === "Gift Card (Penipuan yang mengarahkan ke link tertentu)") {
+                            } else if (obj.kategori === "Gift Card (Penipuan yang mengarahkan ke link tertentu)") {
                                 xl++;
-                            } else if (data.data.data[i].kategori === "Iklan/promosi") {
+                            } else if (obj.kategori === "Iklan/promosi") {
+                                obj.colour = 'orange'
                                 axis++;
-                            } else if (data.data.data[i].kategori === "Banking (transaksi SMS banking)") {
+                            } else if (obj.kategori === "Banking (transaksi SMS banking)") {
                                 indosat++;
-                            } else if (data.data.data[i].kategori === "Operator (Pesan yang langsung dari operator tertentu)") {
+                            } else if (obj.kategori === "Operator (Pesan yang langsung dari operator tertentu)") {
                                 smartfren++;
-                            } else if (data.data.data[i].kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
+                            } else if (obj.kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
                                 tri++;
+                            }else {
+                                obj.colour = 'blue'
                             }
-                            this.desserts.push(data.data.data[i])
+                            this.desserts.push(obj)
                         }
                         this.series.push(telkomsel, xl, axis, indosat, smartfren, tri);
                     }).catch(() => {
@@ -359,12 +372,12 @@
                 },
 
                 headers: [
-                    // { text: 'Id', value: 'id' },
+                    { text: '', value: 'colour' },
                     {text: 'Nomor telepon', value: 'nomor'},
-                    // { text: 'Isi Pesan', value: 'isi' },
                     {text: 'Jenis Provider', value: 'jenis_provider'},
-                    {text: 'Jumlah', value: 'jumlah'},
-                    {text: 'Kategori', value: 'kategori'},
+                    { text: 'Isi Pesan', value: 'isi' },
+                    // {text: 'Jumlah', value: 'jumlah'},
+                    // {text: 'Kategori', value: 'kategori'},
                     // { text: 'Nama Pengirim', value: 'nama_pengirim' },
                     {text: 'Tanggal pengiriman', value: 'tanggal'},
                 ],
