@@ -75,11 +75,14 @@
                     <div class="">
                         <br><br>
                         <div v-if="hit">
-                            <h5>Hasil Pencarian</h5>
+                            <div class="row">
+                                <div class="col-md-11"><h5>Hasil Pencarian</h5></div>
+                                <div class="col-md-1"><button @click="tutup"><i class="fa fa-times"></i></button></div>
+                            </div>
                             <div class="container" v-if="shows">
                                 <!--                                <center><img style="width: 40%; height: 40%"-->
                                 <!--                                             src="../assets/not-found.png" alt=""></center>-->
-                                <center><h2>Hasil Pencarian untuk {{query}} Not Found</h2></center>
+                                <center><h2>Hasil Pencarian untuk {{query}} tidak ditemukan</h2></center>
                             </div>
                             <div class="container" v-else>
                                 <div>
@@ -98,14 +101,15 @@
                                                     Previous</a>
                                             </div>
                                             <div class="col-md-6" align="right">
-                                                <a class="" @click="next" href="#">&#10095; Next</a>
+                                                <a class="" @click="next" href="#">&#10095;
+                                                    Next</a>
                                             </div>
                                         </div>
                                     </center>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" v-if="!cek">
                             <div class="col-md-8">
                             <TrendingSpam/>
                             </div>
@@ -124,7 +128,7 @@
                     </div>
                     <div>
                         <!--                        <br>-->
-                        <div class="row">
+                        <div class="row" v-if="!cek">
                             <div class="col-md-12">
                                 <v-card>
                                     <v-data-table
@@ -222,6 +226,11 @@
             Footer,
             mdbIcon
         },
+        data(){
+            return{
+                cek: false
+            }
+        },
         computed: {
             currentImg: function () {
                 return this.results[Math.abs(this.currentIndex) % this.results.length];
@@ -231,8 +240,13 @@
             this.load();
         },
         methods: {
+            tutup(){
+                this.cek = false;
+                this.hit = false;
+            },
             search() {
                 this.hit = true;
+                this.cek = true;
                 this.$http.post('/search/' + this.query)
                     .then((data) => {
                         console.log(data.data.data.length);
@@ -372,7 +386,7 @@
                 },
 
                 headers: [
-                    { text: '', value: 'colour' },
+                    {text: '', value: 'colour'},
                     {text: 'Nomor telepon', value: 'nomor'},
                     {text: 'Jenis Provider', value: 'jenis_provider'},
                     { text: 'Isi Pesan', value: 'isi' },
