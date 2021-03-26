@@ -3,7 +3,7 @@
         <h3 style="font-weight: bolder">TRENDING SMS SPAM</h3>
         <div class="row">
             <div class="col-md-12" v-if="position===1" v-for="data in trend2" :key="data.nomor">
-                <div class="card container" style="height:85%;background-color: #F2EAEA">
+                <div class="card container" style="height:85%;background-color: #ECF3FF">
                     <p>
                         <span style="padding-right: 10px; color: orange"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
                     </p>
@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-md-12" v-else v-for="data in trend" :key="data.nomor">
-                <div class="card container" style="height:85%;background-color: #F2EAEA">
+                <div class="card container" style="height:85%;background-color: #ECF3FF">
                     <p>
                         <span style="padding-right: 10px; color: orange"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
                     </p>
