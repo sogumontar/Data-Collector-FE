@@ -56,11 +56,11 @@
                             rounded
                             background-color="#FFFFFF"
                     >
-                        <v-btn :color="!first?'#0560AA':'#ffffff'"
+                        <!-- <v-btn :color="!first?'#0560AA':'#ffffff'"
                                :class="!first?'white--text' : 'black--text'"
                                @click="first = false">
                             Laporan Pengguna
-                        </v-btn>
+                        </v-btn> -->
                         <v-btn :color="first?'#0560AA':'#ffffff'"
                                :class="first?'white--text' : 'black--text'"
                                @click="first = true">
@@ -322,11 +322,11 @@
                         'title':"Iklan/Promosi",
                         'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
                     },
-                    {
-                        'color': "grey",
-                        'title':"Unknown",
-                        'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
-                    }
+                    //{
+                    //    'color': "grey",
+                   //     'title':"Unknown",
+                    //    'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
+                    //}
                 ],
                 results: [],
                 resultsearch: [],
