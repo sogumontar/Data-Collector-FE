@@ -120,7 +120,7 @@
                     </div>
                     <div>
                         <!--                        <br>-->
-                        <div class="row" v-if="!cek">
+                        <div class="row" v-if="!cek || shows">
                             <div class="col-md-12">
                                 <v-card>
                                     <v-data-table
@@ -232,12 +232,12 @@
                 this.hit = false;
             },
             search() {
-                this.shows = true;
                 this.hit = true;
                 this.cek = true;
                 this.$http.post('/search/' + this.query)
                     .then((data) => {
                         console.log(data.data.data.length);
+                        this.shows = true;
                         if (data.data.data.length === 0) {
                             this.shows = true;
                             var opt = confirm("Ingin menambahkan data baru?")
