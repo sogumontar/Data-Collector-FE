@@ -95,8 +95,6 @@
                                                     <span style="padding-right: 10px; color: orange"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
                                                 </p>
                                                 <p>{{data.isi}}</p>
-                                                <p align="end" @click="detail(data.nomor)"><span style="padding-right: 10px"><i
-                                                        class="fa fa-bullhorn"></i></span>{{data.jumlah}} Laporan</p>
                                             </div>
                                         </div>
                                     </div>
