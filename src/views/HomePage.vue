@@ -87,33 +87,19 @@
                             <div class="container" v-else>
                                 <div class="row">
                                     <div class="col-md-11"><h5><b>Hasil Pencarian</b></h5></div>
-                                    <div class="col-md-1"><button @click="tutup"><i class="fa fa-times"></i></button></div>
-                                    <div class="col-md-12">
-                                        <div class="card container" style="height:85%;background-color: #ECF3FF">
-                                            <transition-group name="fade" tag="div">
-                                                <div v-for="i in [currentIndex]" :key="i">
-                                                    <center>
-                                                        <p>
-                                                            <span style="padding-right: 10px; color: orange"><i class="fa fa-circle" aria-hidden="true"></i></span> {{currentImg.nomor}}
-                                                        </p>
-                                                        <p>{{currentImg.isi}}</p>
-                                                    </center>
-                                                </div>
-                                            </transition-group>
+                                    <div class="col-md-1" style="align-items: end"><button @click="tutup"><i class="fa fa-times"></i></button></div>
+                                    <div class="row">
+                                        <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
+                                            <div class="card container" style="height:85%;background-color: #ECF3FF">
+                                                <p>
+                                                    <span style="padding-right: 10px; color: orange"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
+                                                </p>
+                                                <p>{{data.isi}}</p>
+                                                <p align="end" @click="detail(data.nomor)"><span style="padding-right: 10px"><i
+                                                        class="fa fa-bullhorn"></i></span>{{data.jumlah}} Laporan</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <center>
-                                        <div class="row">
-                                            <div class="col-md-6" align="left">
-                                                <a class="" @click="prev" href="#">&#10094;
-                                                    Previous</a>
-                                            </div>
-                                            <div class="col-md-6" align="right">
-                                                <a class="" @click="next" href="#">&#10095;
-                                                    Next</a>
-                                            </div>
-                                        </div>
-                                    </center>
                                 </div>
                             </div>
                         </div>
@@ -234,11 +220,6 @@
             Footer,
             mdbIcon
         },
-        data(){
-            return{
-                cek: false
-            }
-        },
         computed: {
             currentImg: function () {
                 return this.results[Math.abs(this.currentIndex) % this.results.length];
@@ -266,9 +247,9 @@
                             }
                         } else {
                             this.shows = false;
-                            this.results = [];
+                            this.resultsearch = [];
                             for (var i in data.data.data) {
-                                this.results.push(data.data.data[i])
+                                this.resultsearch.push(data.data.data[i])
                             }
                         }
                     }).catch(() => {
@@ -323,6 +304,7 @@
         },
         data() {
             return {
+                cek: false,
                 // only needed if you want to render the button with the google ui
                 renderParams: {
                     width: 250,
@@ -347,6 +329,7 @@
                     }
                 ],
                 results: [],
+                resultsearch: [],
                 timer: null,
                 currentIndex: 0,
                 login: false,
