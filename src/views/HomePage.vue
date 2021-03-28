@@ -52,29 +52,35 @@
         <br>
         <v-main class="container">
             <v-card-title v-if="!cek">
-                <v-row align="center" justify="center">
+                <v-row align="center" justify="end">
                     <v-btn-toggle
                             rounded
                             background-color="#FFFFFF"
+                    v-if="!first "
                     >
-                        <v-btn :color="!first?'#0560AA':'#ffffff'"
-                               :class="!first?'white--text' : 'black--text'"
-                               @click="first = false">
-                            Laporan Pengguna
-                        </v-btn>
-                        <v-btn :color="first?'#0560AA':'#ffffff'"
-                               :class="first?'white--text' : 'black--text'"
+<!--                        <v-btn :color="!first?'#0560AA':'#ffffff'"-->
+<!--                               :class="!first?'white&#45;&#45;text' : 'black&#45;&#45;text'"-->
+<!--                               @click="first = false">-->
+<!--                            Laporan Pengguna-->
+<!--                        </v-btn>-->
+                        <v-btn :color="first?'#ffffff':'#2CA1D3'"
+                               :class="first?'black--text' : 'white--text'"
                                @click="first = true">
                             Laporkan SMS Spam
                         </v-btn>
                     </v-btn-toggle>
                 </v-row>
+                <div class="row" v-if="first">
+                    <div class="col-md-11"><h5></h5></div>
+                    <div class="col-md-1" style="align-items: end">
+                        <button @click="first = false"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
             </v-card-title>
             <br>
             <div v-if="!login">
                 <div v-if="!first">
                     <div class="">
-                        <br><br>
                         <div v-if="hit">
                             <!--                            <div class="row">-->
                             <!--                                <div class="col-md-11"><h5>Hasil Pencarian</h5></div>-->
