@@ -19,8 +19,9 @@
                         <b-nav-form>
                             <b-form-input size="sm" type="number" min="0" class="" v-model="query"
                                           placeholder="Cari nomor telepon"></b-form-input>
-                            <b-button size="sm" class="my-sm-0" @click="search" style="background-color: white"><i class="fa fa-search"
-                                                                                        style="color: black"></i>
+                            <b-button size="sm" class="my-sm-0" @click="search" style="background-color: white"><i
+                                    class="fa fa-search"
+                                    style="color: black"></i>
                             </b-button>
                         </b-nav-form>
                     </div>
@@ -75,10 +76,16 @@
                     <div class="">
                         <br><br>
                         <div v-if="hit">
-<!--                            <div class="row">-->
-<!--                                <div class="col-md-11"><h5>Hasil Pencarian</h5></div>-->
-<!--                                <div class="col-md-1"><button @click="tutup"><i class="fa fa-times"></i></button></div>-->
-<!--                            </div>-->
+                            <!--                            <div class="row">-->
+                            <!--                                <div class="col-md-11"><h5>Hasil Pencarian</h5></div>-->
+                            <!--                                <div class="col-md-1"><button @click="tutup"><i class="fa fa-times"></i></button></div>-->
+                            <!--                            </div>-->
+                            <div class="row">
+                                <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
+                                <div class="col-md-1" style="align-items: end">
+                                    <button @click="tutup"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
                             <div class="container" v-if="shows">
                                 <!--                                <center><img style="width: 40%; height: 40%"-->
                                 <!--                                             src="../assets/not-found.png" alt=""></center>-->
@@ -86,13 +93,13 @@
                             </div>
                             <div class="container" v-else>
                                 <div class="row">
-                                    <div class="col-md-11"><h5><b>Hasil Pencarian</b></h5></div>
-                                    <div class="col-md-1" style="align-items: end"><button @click="tutup"><i class="fa fa-times"></i></button></div>
+                                    <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
                                     <div class="row">
                                         <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
                                             <div class="card container" style="height:85%;background-color: #ECF3FF">
                                                 <p>
-                                                    <span style="padding-right: 10px; color: orange"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
+                                                    <span style="padding-right: 10px; color: orange"><i
+                                                            class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
                                                 </p>
                                                 <p>{{data.isi}}</p>
                                             </div>
@@ -103,15 +110,17 @@
                         </div>
                         <div class="row" v-if="!cek">
                             <div class="col-md-8">
-                            <TrendingSpam/>
+                                <TrendingSpam/>
                             </div>
                             <div class="col-md-4">
                                 <h5>Keterangan Kategori</h5>
                                 <hr>
                                 <v-card>
                                     <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
-                                                <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}" ><i class="fa fa-circle" aria-hidden="true"></i></span><b>{{kategori.title}}</b>
-                                                    {{kategori.deskripsi}}</h6>
+                                        <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
+                                                class="fa fa-circle"
+                                                aria-hidden="true"></i></span><b>{{kategori.title}}</b>
+                                            {{kategori.deskripsi}}</h6>
                                     </b-list-group-item>
                                 </v-card>
                                 <br>
@@ -130,27 +139,32 @@
                                             :items="desserts"
                                             :items-per-page="10"
                                             class="elevation-1"
-                                    ><template v-slot:item="{ item }">
-                                        <tr>
-                                            <td><span v-bind:style="{color:item.colour}" style="padding-right: 10px;"><i class="fa fa-circle" aria-hidden="true"></i></span></td>
-                                            <td >{{ item.nomor }}</td>
-                                            <td >{{ item.jenis_provider }}</td>
-                                            <td >{{ item.isi }}</td>
-                                            <td >{{ item.tanggal }}</td>
-                                        </tr>
-                                    </template></v-data-table>
+                                    >
+                                        <template v-slot:item="{ item }">
+                                            <tr>
+                                                <td><span v-bind:style="{color:item.colour}"
+                                                          style="padding-right: 10px;"><i class="fa fa-circle"
+                                                                                          aria-hidden="true"></i></span>
+                                                </td>
+                                                <td>{{ item.nomor }}</td>
+                                                <td>{{ item.jenis_provider }}</td>
+                                                <td>{{ item.isi }}</td>
+                                                <td>{{ item.tanggal }}</td>
+                                            </tr>
+                                        </template>
+                                    </v-data-table>
                                 </v-card>
                             </div>
-<!--                            <div class="col-md-4">-->
-                                <!--                                <h4>Grafik kategori penyebar spam</h4>-->
-                                <!--                                <hr>-->
-                                <!--                                <v-card id="chart">-->
-                                <!--                                    <apexchart type="donut" :options="chartOptions"-->
-                                <!--                                               :series="series"></apexchart>-->
-                                <!--                                    <br><br><br><br>-->
-                                <!--                                </v-card>-->
-                                <!--                                <hr>-->
-<!--                            </div>-->
+                            <!--                            <div class="col-md-4">-->
+                            <!--                                <h4>Grafik kategori penyebar spam</h4>-->
+                            <!--                                <hr>-->
+                            <!--                                <v-card id="chart">-->
+                            <!--                                    <apexchart type="donut" :options="chartOptions"-->
+                            <!--                                               :series="series"></apexchart>-->
+                            <!--                                    <br><br><br><br>-->
+                            <!--                                </v-card>-->
+                            <!--                                <hr>-->
+                            <!--                            </div>-->
                         </div>
                         <br>
                         <!--                        <hr color="black" width="100%">-->
@@ -227,7 +241,7 @@
             this.load();
         },
         methods: {
-            tutup(){
+            tutup() {
                 this.cek = false;
                 this.hit = false;
             },
@@ -291,7 +305,7 @@
                                 smartfren++;
                             } else if (obj.kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
                                 tri++;
-                            }else {
+                            } else {
                                 obj.colour = '#4788FF'
                             }
                             this.desserts.push(obj)
@@ -310,20 +324,20 @@
                     height: 50,
                     longtitle: true
                 },
-                kategori:[
+                kategori: [
                     {
                         'color': "black",
-                        'title':"Penipuan",
+                        'title': "Penipuan",
                         'deskripsi': "Mengandung unsur-unsur rekayasa tipu muslihat dengan serangkaian kasus yang menarik perhatian pengguna."
                     },
                     {
                         'color': "orange",
-                        'title':"Iklan/Promosi",
+                        'title': "Iklan/Promosi",
                         'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
                     },
                     {
                         'color': "grey",
-                        'title':"Unknown",
+                        'title': "Unknown",
                         'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
                     }
                 ],
@@ -379,7 +393,7 @@
                     {text: '', value: 'colour'},
                     {text: 'Nomor telepon', value: 'nomor'},
                     {text: 'Jenis Provider', value: 'jenis_provider'},
-                    { text: 'Isi Pesan', value: 'isi' },
+                    {text: 'Isi Pesan', value: 'isi'},
                     // {text: 'Jumlah', value: 'jumlah'},
                     // {text: 'Kategori', value: 'kategori'},
                     // { text: 'Nama Pengirim', value: 'nama_pengirim' },
