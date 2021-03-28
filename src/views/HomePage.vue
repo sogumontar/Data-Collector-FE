@@ -232,6 +232,7 @@
                 this.hit = false;
             },
             search() {
+                this.shows = true;
                 this.hit = true;
                 this.cek = true;
                 this.$http.post('/search/' + this.query)
