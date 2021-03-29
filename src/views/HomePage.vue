@@ -95,7 +95,7 @@
                             <div class="container" v-if="shows">
                                 <!--                                <center><img style="width: 40%; height: 40%"-->
                                 <!--                                             src="../assets/not-found.png" alt=""></center>-->
-                                <center><h2>Hasil Pencarian untuk {{query}} tidak ditemukan</h2></center>
+                                <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
                             </div>
                             <div class="container" v-else>
                                 <div class="row">
