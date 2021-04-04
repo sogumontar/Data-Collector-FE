@@ -314,7 +314,10 @@
                             } else {
                                 obj.colour = '#4788FF'
                             }
-                            this.desserts.push(obj)
+
+                            if (obj.kategori !== "Ham") {
+                                this.desserts.push(obj)
+                            }
                         }
                         this.series.push(telkomsel, xl, axis, indosat, smartfren, tri);
                     }).catch(() => {
