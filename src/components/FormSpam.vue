@@ -9,7 +9,7 @@
                             <v-text-field
                                     type="number"
                                     v-model="nomor"
-                                    :counter="13"
+                                    :counter="15"
                                     label="Nomor Pengirim Pesan"
                                     required>
                             </v-text-field>
@@ -72,7 +72,6 @@
         mounted() {
 
             if(this.$route.query.msg ){
-                alert("tester")
                 this.isi = this.$route.query.msg
                 this.nomor = this.$route.query.nomor
                 this.tanggal = this.$route.query.date
