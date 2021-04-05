@@ -18,6 +18,11 @@ const routes = [
     component: App
   },
   {
+    path: "/:msg/:nomor/:date",
+    name: 'Homes',
+    component: App
+  },
+  {
     path: '/after',
     name: 'after',
     component: After

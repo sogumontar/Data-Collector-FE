@@ -245,6 +245,9 @@
         },
         mounted() {
             this.load();
+            if(this.$route.query.msg ){
+                this.first=true
+            }
         },
         methods: {
             tutup() {

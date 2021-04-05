@@ -69,6 +69,15 @@
 <script>
     export default {
         name: "FormSpam",
+        mounted() {
+
+            if(this.$route.query.msg ){
+                alert("tester")
+                this.isi = this.$route.query.msg
+                this.nomor = this.$route.query.nomor
+                this.tanggal = this.$route.query.date
+            }
+        },
         data() {
             return {
                 select: '',
@@ -105,7 +114,8 @@
         },
         methods: {
             submit() {
-                this.validate();
+                alert(this.tanggal)
+                // this.validate();
             },
             validate() {
                 let today = new Date().toISOString().slice(0, 10)
