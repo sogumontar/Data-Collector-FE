@@ -93,8 +93,8 @@
                     'Iklan/promosi',
                     // 'Banking (transaksi SMS banking)',
                     // 'Operator (Pesan yang langsung dari operator tertentu)',
-                    'Unknown (Pesan yang tidak mengganggu namun nomor pengirim ' +
-                    'tidak diketahui)',
+                    // 'Unknown (Pesan yang tidak mengganggu namun nomor pengirim ' +
+                    // 'tidak diketahui)',
                     'Ham'
                 ],
                 nama_pengirim: '--',

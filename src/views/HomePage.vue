@@ -315,8 +315,6 @@
                                 indosat++;
                             } else if (obj.kategori === "Operator (Pesan yang langsung dari operator tertentu)") {
                                 smartfren++;
-                            } else if (obj.kategori === "Unknown (Pesan yang tidak mengganggu namun nomor pengirim tidak diketahui)") {
-                                tri++;
                             } else {
                                 obj.colour = '#4788FF'
                             }
@@ -350,11 +348,11 @@
                         'title': "Iklan/Promosi",
                         'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
                     },
-                    {
-                        'color': "grey",
-                        'title': "Unknown",
-                        'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
-                    }
+                    // {
+                    //     'color': "grey",
+                    //     'title': "Unknown",
+                    //     'deskripsi': "Pesan yang tidak diketahui/tidak dikenal serta bukan termasuk sms dengan unsur penipuan, promosi, banking, dan operator."
+                    // }
                 ],
                 results: [],
                 resultsearch: [],
