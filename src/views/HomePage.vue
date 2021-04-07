@@ -5,6 +5,7 @@
                     alt="Vuetify Logo"
                     class="shrink mr-2"
                     contain
+                    @click="reloads"
                     src="../../public/logo-2.png"
                     transition="scale-transition"
                     width="100"
@@ -12,7 +13,8 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
-                <h3 style="color: white">Data Collector TA-07</h3>
+                <h3 style="color: white"
+                    @click="reloads">Data Collector TA-0s7</h3>
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <div class="form-group">
@@ -56,13 +58,13 @@
                     <v-btn-toggle
                             rounded
                             background-color="#FFFFFF"
-                    v-if="!first "
+                            v-if="!first "
                     >
-<!--                        <v-btn :color="!first?'#0560AA':'#ffffff'"-->
-<!--                               :class="!first?'white&#45;&#45;text' : 'black&#45;&#45;text'"-->
-<!--                               @click="first = false">-->
-<!--                            Laporan Pengguna-->
-<!--                        </v-btn>-->
+                        <!--                        <v-btn :color="!first?'#0560AA':'#ffffff'"-->
+                        <!--                               :class="!first?'white&#45;&#45;text' : 'black&#45;&#45;text'"-->
+                        <!--                               @click="first = false">-->
+                        <!--                            Laporan Pengguna-->
+                        <!--                        </v-btn>-->
                         <v-btn :color="first?'#ffffff':'#2CA1D3'"
                                :class="first?'black--text' : 'white--text'"
                                @click="first = true">
@@ -78,116 +80,110 @@
                 </div>
             </v-card-title>
             <br>
-            <div v-if="!login">
-                <div v-if="!first">
-                    <div class="">
-                        <div v-if="hit">
-                            <!--                            <div class="row">-->
-                            <!--                                <div class="col-md-11"><h5>Hasil Pencarian</h5></div>-->
-                            <!--                                <div class="col-md-1"><button @click="tutup"><i class="fa fa-times"></i></button></div>-->
-                            <!--                            </div>-->
+            <div v-if="!first">
+                <div class="">
+                    <div v-if="hit">
+                        <div class="row">
+                            <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
+                            <div class="col-md-1" style="align-items: end" v-if="searchFalse">
+                                <button @click="tutup"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="container" v-if="shows">
+                            <!--                                <center><img style="width: 40%; height: 40%"-->
+                            <!--                                             src="../assets/not-found.png" alt=""></center>-->
+                            <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
+                        </div>
+                        <div class="container" v-else>
                             <div class="row">
-                                <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
-                                <div class="col-md-1" style="align-items: end">
-                                    <button @click="tutup"><i class="fa fa-times"></i></button>
-                                </div>
-                            </div>
-                            <div class="container" v-if="shows">
-                                <!--                                <center><img style="width: 40%; height: 40%"-->
-                                <!--                                             src="../assets/not-found.png" alt=""></center>-->
-                                <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
-                            </div>
-                            <div class="container" v-else>
+                                <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
                                 <div class="row">
-                                    <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
-                                    <div class="row">
-                                        <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
-                                            <div class="card container" style="height:85%;background-color: #ECF3FF">
-                                                <p>
+                                    <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
+                                        <div class="card container" style="height:85%;background-color: #ECF3FF">
+                                            <p>
                                                     <span style="padding-right: 10px; color: orange"><i
                                                             class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
-                                                </p>
-                                                <p>{{data.isi}}</p>
-                                            </div>
+                                            </p>
+                                            <p>{{data.isi}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" v-if="!cek">
-                            <div class="col-md-8">
-                                <TrendingSpam/>
-                            </div>
-                            <div class="col-md-4">
-                                <h5>Keterangan Kategori</h5>
-                                <hr>
-                                <v-card>
-                                    <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
-                                        <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
-                                                class="fa fa-circle"
-                                                aria-hidden="true"></i></span><b>{{kategori.title}}</b>
-                                            {{kategori.deskripsi}}</h6>
-                                    </b-list-group-item>
-                                </v-card>
-                                <br>
-                            </div>
+                    </div>
+                    <div class="row" v-if="!cek">
+                        <div class="col-md-8">
+                            <TrendingSpam/>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Keterangan Kategori</h5>
+                            <hr>
+                            <v-card>
+                                <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
+                                    <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
+                                            class="fa fa-circle"
+                                            aria-hidden="true"></i></span><b>{{kategori.title}}</b>
+                                        {{kategori.deskripsi}}</h6>
+                                </b-list-group-item>
+                            </v-card>
+                            <br>
                         </div>
                     </div>
-                    <div>
-                        <!--                        <br>-->
-                        <div class="row" v-if="!cek || shows">
-                            <div class="col-md-12">
-                                <v-card>
-                                    <v-data-table
-                                            dense
-                                            @click:row="show"
-                                            :headers="headers"
-                                            :items="desserts"
-                                            :items-per-page="10"
-                                            class="elevation-1"
-                                    >
-                                        <template v-slot:item="{ item }">
-                                            <tr>
-                                                <td><span v-bind:style="{color:item.colour}"
-                                                          style="padding-right: 10px;"><i class="fa fa-circle"
-                                                                                          aria-hidden="true"></i></span>
-                                                </td>
-                                                <td>{{ item.nomor }}</td>
-                                                <td>{{ item.jenis_provider }}</td>
-                                                <td>{{ item.isi }}</td>
-                                                <td>{{ item.tanggal }}</td>
-                                            </tr>
-                                        </template>
-                                    </v-data-table>
-                                </v-card>
-                            </div>
-                            <!--                            <div class="col-md-4">-->
-                            <!--                                <h4>Grafik kategori penyebar spam</h4>-->
-                            <!--                                <hr>-->
-                            <!--                                <v-card id="chart">-->
-                            <!--                                    <apexchart type="donut" :options="chartOptions"-->
-                            <!--                                               :series="series"></apexchart>-->
-                            <!--                                    <br><br><br><br>-->
-                            <!--                                </v-card>-->
-                            <!--                                <hr>-->
-                            <!--                            </div>-->
+                </div>
+                <div>
+                    <!--                        <br>-->
+                    <div class="row" v-if="!cek || shows">
+                        <div class="col-md-12">
+                            <v-card>
+                                <v-data-table
+                                        dense
+                                        @click:row="show"
+                                        :headers="headers"
+                                        :items="desserts"
+                                        :items-per-page="10"
+                                        class="elevation-1"
+                                >
+                                    <template v-slot:item="{ item }">
+                                        <tr>
+                                            <td><span v-bind:style="{color:item.colour}"
+                                                      style="padding-right: 10px;"><i class="fa fa-circle"
+                                                                                      aria-hidden="true"></i></span>
+                                            </td>
+                                            <td>{{ item.nomor }}</td>
+                                            <td>{{ item.jenis_provider }}</td>
+                                            <td>{{ item.isi }}</td>
+                                            <td>{{ item.tanggal }}</td>
+                                        </tr>
+                                    </template>
+                                </v-data-table>
+                            </v-card>
                         </div>
-                        <br>
-                        <!--                        <hr color="black" width="100%">-->
-                        <!--                        <br><br>-->
-                        <!--                        <div>-->
-                        <!--                            <v-col-->
-                        <!--                                    class="text-center"-->
-                        <!--                                    cols="12"-->
-                        <!--                            >-->
-                        <!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
-                        <!--                            </v-col>-->
-                        <!--                        </div>-->
+                        <!--                            <div class="col-md-4">-->
+                        <!--                                <h4>Grafik kategori penyebar spam</h4>-->
+                        <!--                                <hr>-->
+                        <!--                                <v-card id="chart">-->
+                        <!--                                    <apexchart type="donut" :options="chartOptions"-->
+                        <!--                                               :series="series"></apexchart>-->
+                        <!--                                    <br><br><br><br>-->
+                        <!--                                </v-card>-->
+                        <!--                                <hr>-->
+                        <!--                            </div>-->
                     </div>
+                    <br>
+                    <!--                        <hr color="black" width="100%">-->
+                    <!--                        <br><br>-->
+                    <!--                        <div>-->
+                    <!--                            <v-col-->
+                    <!--                                    class="text-center"-->
+                    <!--                                    cols="12"-->
+                    <!--                            >-->
+                    <!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
+                    <!--                            </v-col>-->
+                    <!--                        </div>-->
                 </div>
-                <div v-else>
-                    <FormSpam/>
-                </div>
+            </div>
+            <div v-else>
+                <FormSpam/>
             </div>
             <div v-else>
                 <h1>Login</h1>
@@ -245,8 +241,8 @@
         },
         mounted() {
             this.load();
-            if(this.$route.query.msg ){
-                this.first=true
+            if (this.$route.query.msg) {
+                this.first = true
             }
         },
         methods: {
@@ -266,6 +262,7 @@
                             var opt = confirm("Ingin menambahkan data baru?")
                             if (opt) {
                                 this.first = true;
+                                this.searchFalse = true
                             }
                         } else {
                             this.shows = false;
@@ -287,6 +284,12 @@
             },
             prev: function () {
                 this.currentIndex -= 1;
+            },
+            reloads() {
+                this.first = false
+                this.shows = false
+                this.cek = false;
+                this.hit = false;
             },
             load() {
                 this.$http.get('/findAll')
@@ -361,6 +364,7 @@
                 first: false,
                 hit: false,
                 series: [],
+                searchFalse: false,
                 backup: [],
                 query: "",
                 shows: false,
