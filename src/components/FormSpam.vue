@@ -113,8 +113,7 @@
         },
         methods: {
             submit() {
-                alert(this.tanggal)
-                // this.validate();
+                this.validate();
             },
             validate() {
                 let today = new Date().toISOString().slice(0, 10)

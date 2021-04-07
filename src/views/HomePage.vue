@@ -14,7 +14,7 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <h3 style="color: white"
-                    @click="reloads">Data Collector TA-0s7</h3>
+                    @click="reloads">Data Collector TA-07</h3>
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <div class="form-group">
