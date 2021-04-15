@@ -85,7 +85,7 @@
                     <div v-if="hit">
                         <div class="row">
                             <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
-                            <div class="col-md-1" style="align-items: end" v-if="searchFalse">
+                            <div class="col-md-1" style="align-items: end">
                                 <button @click="tutup"><i class="fa fa-times"></i></button>
                             </div>
                         </div>
@@ -150,8 +150,8 @@
                                                                                       aria-hidden="true"></i></span>
                                             </td>
                                             <td>{{ item.nomor }}</td>
-                                            <td>{{ item.jenis_provider }}</td>
                                             <td>{{ item.isi }}</td>
+                                            <td>{{ item.jenis_provider }}</td>
                                             <td>{{ item.tanggal }}</td>
                                         </tr>
                                     </template>
@@ -406,8 +406,8 @@
                 headers: [
                     {text: '', value: 'colour'},
                     {text: 'Nomor telepon', value: 'nomor'},
-                    {text: 'Jenis Provider', value: 'jenis_provider'},
                     {text: 'Isi Pesan', value: 'isi'},
+                    {text: 'Jenis Provider', value: 'jenis_provider'},
                     // {text: 'Jumlah', value: 'jumlah'},
                     // {text: 'Kategori', value: 'kategori'},
                     // { text: 'Nama Pengirim', value: 'nama_pengirim' },
