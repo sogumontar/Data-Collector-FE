@@ -2,23 +2,30 @@
     <div>
         <h3 style="font-weight: bolder">TRENDING SMS SPAM</h3>
         <div class="row">
-            <div class="col-md-12" v-if="position===1" v-for="data in trend2" :key="data.nomor">
+<!--            <div class="col-md-12" v-if="position===1" v-for="data in trend2" :key="data.nomor">-->
+<!--                <div class="card container" style="height:85%;background-color: #ECF3FF">-->
+<!--                    <p v-if="data.kategori === 'Penipuan'">-->
+<!--                        <span style="padding-right: 10px; color: #000000"><i class="fa fa-circle"-->
+<!--                                                                             aria-hidden="true"></i></span>{{data.nomor}}-->
+<!--                    </p>-->
+<!--                    <p v-else-if="data.kategori === 'Iklan/promosi'">-->
+<!--                        <span style="padding-right: 10px; color: #ECA336"><i class="fa fa-circle"-->
+<!--                                                                             aria-hidden="true"></i></span>{{data.nomor}}-->
+<!--                    </p>-->
+<!--                    <p>{{data.isi}}</p>-->
+<!--                    <b><p align="end" @click="detail(data.nomor)"><span style="padding-right: 10px"><i-->
+<!--                            class="fa fa-bullhorn"></i></span>{{data.jumlah}} Laporan</p></b>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="col-md-12" v-if="succes_load" v-for="data in getAllTrendLimit5" :key="data.nomor">
                 <div class="card container" style="height:85%;background-color: #ECF3FF">
                     <p v-if="data.kategori === 'Penipuan'">
-                        <span style="padding-right: 10px; color: #000000"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
+                        <span style="padding-right: 10px; color: #000000"><i class="fa fa-circle"
+                                                                             aria-hidden="true"></i></span>{{data.nomor}}
                     </p>
                     <p v-else-if="data.kategori === 'Iklan/promosi'">
-                        <span style="padding-right: 10px; color: #ECA336"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
-                    </p>
-                    <p>{{data.isi}}</p>
-                    <b><p align="end" @click="detail(data.nomor)"><span style="padding-right: 10px"><i
-                        class="fa fa-bullhorn"></i></span>{{data.jumlah}} Laporan</p></b>
-                </div>
-            </div>
-            <div class="col-md-12" v-else v-for="data in trend" :key="data.nomor">
-                <div class="card container" style="height:85%;background-color: #ECF3FF">
-                    <p>
-                        <span style="padding-right: 10px; color: #ECA336"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
+                        <span style="padding-right: 10px; color: #ECA336"><i class="fa fa-circle"
+                                                                             aria-hidden="true"></i></span>{{data.nomor}}
                     </p>
                     <p>{{data.isi}}</p>
                     <p align="end" @click="detail(data.nomor)"><span style="padding-right: 10px"><i
@@ -38,10 +45,10 @@
             </div>
             <div class="row" align="center">
                 <div class="col-md-6" align="right" style="padding-right:50px ">
-                    <v-btn class="btn" style="box-shadow: 1px 1px grey" @click="position=1">Sebelumnya</v-btn>
+                    <v-btn class="btn" style="box-shadow: 1px 1px grey" :disabled="pos === 1" @click="pos--">Sebelumnya</v-btn>
                 </div>
                 <div class="col-md-6" align="left" style="padding-left: 50px">
-                    <v-btn class="btn" style="box-shadow: 1px 1px grey" @click="position=2">Sesudah</v-btn>
+                    <v-btn class="btn" style="box-shadow: 1px 1px grey" :disabled="pos === pages" @click="pos++">Sesudah</v-btn>
                 </div>
             </div>
             <!--            <div class="col-md-6">-->
@@ -64,39 +71,56 @@
         name: "TrendingSpam",
         mounted() {
             this.$http.get('/trending/findAll')
-                .then((data) => {
-                    var indikator=0;
-                    console.log(data)
-                    for (var i in data.data.data) {
-                        if (indikator < data.data.data.length / 2) {
-                            this.trend.push({
-                                'nomor': data.data.data[indikator].nomor,
-                                'jumlah': data.data.data[indikator].jumlah,
-                                'isi': data.data.data[indikator].isi,
-                                'position': indikator,
-                                'kategori': data.data.data[indikator].kategori
-                            });
-                        } else {
-                            this.trend2.push({
-                                'nomor': data.data.data[indikator].nomor,
-                                'jumlah': data.data.data[indikator].jumlah,
-                                'isi': data.data.data[indikator].isi,
-                                'position': indikator,
-                                'kategori': data.data.data[indikator].kategori
-                            });
-                        }
+                .then((res) => {
+                    var indikator = 0;
+                    const {data} = res.data;
+                    for (var i in data) {
+                        // if (indikator < data.length / 2) {
+                        this.trend.push({
+                            'nomor': data[indikator].nomor,
+                            'jumlah': data[indikator].jumlah,
+                            'isi': data[indikator].isi,
+                            'position': indikator,
+                            'kategori': data[indikator].kategori
+                        });
+                        // } else {
+                        //     this.trend2.push({
+                        //         'nomor': data[indikator].nomor,
+                        //         'jumlah': data[indikator].jumlah,
+                        //         'isi': data[indikator].isi,
+                        //         'position': indikator,
+                        //         'kategori': data[indikator].kategori
+                        //     });
+                        // }
                         indikator++
                     }
+                    this.pages = Math.ceil(this.trend.length / 5);
+                    this.succes_load = true;
                 }).catch(() => {
             });
         },
+        computed: {
+            getAllTrendLimit5: function () {
+                var res = new Array();
+                var start = (this.pos * 5) - 5 ;
+                console.log(this.trend)
+                for(var i = start; i < start + 5 && this.trend.length > i; i++) {
+                    console.log(this.trend[i])
+                    res.push(this.trend[i])
+                }
+                return res;
+            }
+        },
         data() {
             return {
-                trend: [],
+                trend: new Array(),
                 trend2: [],
-                position:1,
+                position: 1,
                 details: [],
-                selected: ''
+                selected: '',
+                pos: 1,
+                pages: 1,
+                succes_load: false
             }
         },
         methods: {
