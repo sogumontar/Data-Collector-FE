@@ -128,7 +128,7 @@
                     !this.kategori_select ||
                     !this.tanggal
                 ) {
-                    alert('Semua Field Harus diisi');
+                    alert('Semua field harus diisi');
                 } else if (now < picked) {
                     alert("Tidak boleh lewat dari tanggal sekarang")
                 } else {

@@ -14,17 +14,23 @@
 
             <b-collapse id="nav-collapse" is-nav>
                 <h3 style="color: white"
-                    @click="reloads">Data Collector TA-07</h3>
+                    @click="reloads" class="ml-4">Data Collector TA-07</h3>
                 <!-- Right aligned nav items -->
-                <b-navbar-nav class="ml-auto">
+                <b-navbar-nav class="">
                     <div class="form-group">
                         <b-nav-form>
-                            <b-form-input size="sm" type="number" min="0" class="" v-model="query"
-                                          placeholder="Cari nomor telepon"></b-form-input>
-                            <b-button size="sm" class="my-sm-0" @click="search" style="background-color: white"><i
-                                    class="fa fa-search"
-                                    style="color: black"></i>
-                            </b-button>
+                            <b-row class="wr-form-search1" style="">
+                                <b-col cols="auto">
+                                    <b-form-input size="sm" type="number" min="0" class="wr-form-search" v-model="query"
+                                                  placeholder="Cari nomor telepon" style=""></b-form-input>
+                                </b-col>
+                                <b-col cols="auto" class="wr-button-search" style="">
+                                    <b-button size="sm" class="my-sm-0 " @click="search" style="background-color: white"><i
+                                            class="fa fa-search"
+                                            style="color: black;"></i>
+                                    </b-button>
+                                </b-col>
+                            </b-row>
                         </b-nav-form>
                     </div>
                     <!--                        <b-nav-form>-->
@@ -67,7 +73,7 @@
                         <!--                        </v-btn>-->
                         <v-btn :color="first?'#ffffff':'#2CA1D3'"
                                :class="first?'black--text' : 'white--text'"
-                               @click="first = true">
+                               @click="first = true" class="gita-btn-lapor">
                             Laporkan SMS Spam
                         </v-btn>
                     </v-btn-toggle>
@@ -85,7 +91,7 @@
                     <div v-if="hit">
                         <div class="row">
                             <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
-                            <div class="col-md-1" style="align-items: end" v-if="searchFalse">
+                            <div class="col-md-1" style="align-items: end">
                                 <button @click="tutup"><i class="fa fa-times"></i></button>
                             </div>
                         </div>
@@ -111,29 +117,35 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="row" v-if="!cek">
                         <div class="col-md-8">
                             <TrendingSpam/>
                         </div>
                         <div class="col-md-4">
-                            <h5>Keterangan Kategori</h5>
+                            <h5 class="gita-judul-keterangan">Keterangan Kategori</h5>
                             <hr>
-                            <v-card>
-                                <b-list-group-item v-for="kategori in kategori" :key="kategori.title">
+
+                                <b-list-group-item v-for="kategori in kategori" :key="kategori.title" class="col-12 gita-keterangan-kategori">
+
                                     <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
                                             class="fa fa-circle"
                                             aria-hidden="true"></i></span><b>{{kategori.title}}</b>
                                         {{kategori.deskripsi}}</h6>
+
                                 </b-list-group-item>
-                            </v-card>
+
                             <br>
                         </div>
                     </div>
+
+
                 </div>
                 <div>
                     <!--                        <br>-->
                     <div class="row" v-if="!cek || shows">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-12 p-4">
                             <v-card>
                                 <v-data-table
                                         dense
@@ -141,7 +153,7 @@
                                         :headers="headers"
                                         :items="desserts"
                                         :items-per-page="10"
-                                        class="elevation-1"
+                                        class="elevation-1 table table-responsive"
                                 >
                                     <template v-slot:item="{ item }">
                                         <tr>
@@ -150,8 +162,8 @@
                                                                                       aria-hidden="true"></i></span>
                                             </td>
                                             <td>{{ item.nomor }}</td>
-                                            <td>{{ item.jenis_provider }}</td>
                                             <td>{{ item.isi }}</td>
+                                            <td>{{ item.jenis_provider }}</td>
                                             <td>{{ item.tanggal }}</td>
                                         </tr>
                                     </template>
@@ -406,8 +418,8 @@
                 headers: [
                     {text: '', value: 'colour'},
                     {text: 'Nomor telepon', value: 'nomor'},
-                    {text: 'Jenis Provider', value: 'jenis_provider'},
                     {text: 'Isi Pesan', value: 'isi'},
+                    {text: 'Jenis Provider', value: 'jenis_provider'},
                     // {text: 'Jumlah', value: 'jumlah'},
                     // {text: 'Kategori', value: 'kategori'},
                     // { text: 'Nama Pengirim', value: 'nama_pengirim' },
@@ -420,6 +432,81 @@
     }
 </script>
 <style>
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 600px) {
+        .gita-form-search{
+            margin-left: -10px
+        }
+        .gita-button-search{
+            margin-left: -35px
+        }
+        .gita-btn-lapor{
+            margin-right: 20px;
+        }
+        .gita-judul-keterangan{
+            margin-left: 17px;
+        }
+        .gita-keterangan-kategori{
+            margin-left: 16px;
+        }
+        /*.gita-form-search1{*/
+        /*    margin-left: 20px*/
+        /*}*/
+    }
+
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (min-width: 600px) {
+        .wr-form-search{
+            margin-left: -11px
+        }
+        .wr-button-search{
+            margin-left: -30px
+        }
+        /*.wr-form-search1{*/
+        /*    margin-left: 20px*/
+        /*}*/
+    }
+
+    /* Medium devices (landscape tablets, 768px and up) */
+    @media only screen and (min-width: 768px) {
+        .wr-form-search{
+            margin-left: -11px
+        }
+        .wr-button-search{
+            margin-left: -30px
+        }
+        /*.wr-form-search1{*/
+        /*    margin-left: 20px*/
+        /*}*/
+    }
+
+    /* Large devices (laptops/desktops, 992px and up) */
+    @media only screen and (min-width: 992px) {
+        .wr-form-search{
+            margin-left: 530px
+        }
+        .wr-button-search{
+            margin-left: -28px
+        }
+        /*.wr-form-search1{*/
+        /*    margin-right: -20px*/
+        /*}*/
+    }
+
+    /* Extra large devices (large laptops and desktops, 1200px and up) */
+    @media only screen and (min-width: 1200px) {
+        .wr-form-search{
+            margin-left: 685px
+        }
+        .wr-button-search{
+            margin-left: -28px
+        }
+        /*.wr-form-search1{*/
+        /*    margin-right: 100px*/
+        /*}*/
+    }
+
     * {
         box-sizing: border-box;
     }
