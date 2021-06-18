@@ -30,7 +30,8 @@ Vue.use(BootstrapVue);
 Vue.use(VueApexCharts);
 Vue.config.productionTip = false
 Vue.prototype.$http = axios.create({
-  baseURL: 'https://www.portal-desa.web.id/BE/api',
+  // baseURL: 'https://www.portal-desa.web.id/BE/api',
+  baseURL: 'https://sotardok.web.id/spam-detector/api',
 });
 Vue.component('apexchart', VueApexCharts)
 new Vue({
