@@ -2,7 +2,6 @@
     <div>
         <p style="font-weight: bolder" class="gita-judul-trending">TRENDING SMS SPAM</p>
         <div class="row">
-            <<<<<<< HEAD
             <div class="col-md-12" v-for="(data,key) in trend" :key="key">
                 <div v-if="positions === 1">
                     <div v-if="key < 5" class="card container" style="height:85%;background-color: #ECF3FF">
@@ -64,7 +63,6 @@
                             <p>{{data.isi}}</p>
                             <p align="end" @click="detail(data.nomor)"><span style="padding-right: 10px"><i
                                     class="fa fa-bullhorn"></i></span>{{data.jumlah}} Laporan</p>
-                            >>>>>>> 75c5e17fc8b63defe3a16f282b3ca14c3d3a0258
                         </div>
                     </div>
 
