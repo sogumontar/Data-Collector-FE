@@ -471,10 +471,10 @@
     /* Medium devices (landscape tablets, 768px and up) */
     @media only screen and (min-width: 768px) {
         .wr-form-search{
-            margin-left: -11px
+            margin-left: -10px
         }
         .wr-button-search{
-            margin-left: -30px
+            margin-left: -35px
         }
         /*.wr-form-search1{*/
         /*    margin-left: 20px*/
