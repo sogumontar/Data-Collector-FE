@@ -435,10 +435,10 @@
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
-        .gita-form-search{
+        .wr-form-search{
             margin-left: -10px
         }
-        .gita-button-search{
+        .wr-button-search{
             margin-left: -35px
         }
         .gita-btn-lapor{
@@ -484,10 +484,10 @@
     /* Large devices (laptops/desktops, 992px and up) */
     @media only screen and (min-width: 992px) {
         .wr-form-search{
-            margin-left: 530px
+            margin-left: 330px
         }
         .wr-button-search{
-            margin-left: -28px
+            margin-left: -27px
         }
         /*.wr-form-search1{*/
         /*    margin-right: -20px*/
@@ -497,13 +497,13 @@
     /* Extra large devices (large laptops and desktops, 1200px and up) */
     @media only screen and (min-width: 1200px) {
         .wr-form-search{
-            margin-left: 685px
+            margin-left: 535px
         }
         .wr-button-search{
-            margin-left: -28px
+            margin-left: -29px
         }
         /*.wr-form-search1{*/
-        /*    margin-right: 100px*/
+        /*    margin-right: 300px*/
         /*}*/
     }
 
