@@ -25,7 +25,8 @@
                                                   placeholder="Cari nomor telepon" style=""></b-form-input>
                                 </b-col>
                                 <b-col cols="auto" class="wr-button-search" style="">
-                                    <b-button size="sm" class="my-sm-0 " @click="search" style="background-color: white"><i
+                                    <b-button size="sm" class="my-sm-0 " @click="search"
+                                              style="background-color: white"><i
                                             class="fa fa-search"
                                             style="color: black;"></i>
                                     </b-button>
@@ -33,118 +34,90 @@
                             </b-row>
                         </b-nav-form>
                     </div>
-                    <!--                        <b-nav-form>-->
-                    <!--                            <b-form-input size="sm"  type="number" min="0"  class="mr-sm-2"  v-model="query" placeholder="Cari nomor telepon"></b-form-input>-->
-                    <!--                            <b-button size="sm" class="my-2 my-sm-0" @click="search" >Search</b-button>-->
-                    <!--                        </b-nav-form>-->
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
-
         <v-spacer></v-spacer>
-
-        <!--            <div right v-if="!login">-->
-        <!--                    <GoogleLogin-->
-        <!--                            :params="params"-->
-        <!--                            :onSuccess="onSuccess"-->
-        <!--                            :onFailure="onFailure"-->
-        <!--                            style="margin-top: 17px"-->
-        <!--                    >-->
-        <!--                        Login-->
-        <!--                    </GoogleLogin>-->
-        <!--            </div>-->
-        <!--            <b-nav-item-dropdown text="Lang" right v-else>-->
-        <!--                <b-dropdown-item href="#">Profile</b-dropdown-item>-->
-        <!--                <b-dropdown-item href="#">Logout</b-dropdown-item>-->
-        <!--            </b-nav-item-dropdown>-->
-        <br>
         <v-main class="container">
-            <v-card-title v-if="!cek">
-                <v-row align="center" justify="end">
-                    <v-btn-toggle
-                            rounded
-                            background-color="#FFFFFF"
-                            v-if="!first "
-                    >
-                        <!--                        <v-btn :color="!first?'#0560AA':'#ffffff'"-->
-                        <!--                               :class="!first?'white&#45;&#45;text' : 'black&#45;&#45;text'"-->
-                        <!--                               @click="first = false">-->
-                        <!--                            Laporan Pengguna-->
-                        <!--                        </v-btn>-->
-                        <v-btn :color="first?'#ffffff':'#2CA1D3'"
-                               :class="first?'black--text' : 'white--text'"
-                               @click="first = true" class="gita-btn-lapor">
-                            Laporkan SMS Spam
-                        </v-btn>
-                    </v-btn-toggle>
-                </v-row>
-                <div class="row" v-if="first">
-                    <div class="col-md-11"><h5></h5></div>
-                    <div class="col-md-1" style="align-items: end">
-                        <button @click="first = false"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-            </v-card-title>
-            <br>
             <div v-if="!first">
-                <div class="">
-                    <div v-if="hit">
+                <div v-if="hit">
+                    <div class="row">
+                        <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
+                        <div class="col-md-1" style="align-items: end">
+                            <button @click="tutup"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="container" v-if="shows">
+                        <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
+                    </div>
+                    <div class="container" v-else>
                         <div class="row">
-                            <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
-                            <div class="col-md-1" style="align-items: end">
-                                <button @click="tutup"><i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="container" v-if="shows">
-                            <!--                                <center><img style="width: 40%; height: 40%"-->
-                            <!--                                             src="../assets/not-found.png" alt=""></center>-->
-                            <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
-                        </div>
-                        <div class="container" v-else>
+                            <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
                             <div class="row">
-                                <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
-                                <div class="row">
-                                    <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
-                                        <div class="card container" style="height:85%;background-color: #ECF3FF">
-                                            <p>
+                                <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
+                                    <div class="card container" style="height:85%;background-color: #ECF3FF">
+                                        <p>
                                                     <span style="padding-right: 10px; color: orange"><i
                                                             class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
-                                            </p>
-                                            <p>{{data.isi}}</p>
-                                        </div>
+                                        </p>
+                                        <p>{{data.isi}}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
+                </div>
+                <div class="col-md-12">
                     <div class="row" v-if="!cek">
-                        <div class="col-md-8">
+                        <div class="col-md-8 col-sm-12 ">
+                            <br>
                             <TrendingSpam/>
                         </div>
-                        <div class="col-md-4">
-                            <h5 class="gita-judul-keterangan">Keterangan Kategori</h5>
-                            <hr>
+                        <div class="col-md-4 col-sm-12">
+                            <v-card-title v-if="!cek">
+                                <v-row justify="end">
+                                    <v-btn-toggle
+                                            rounded
+                                            background-color="#FFFFFF"
+                                            v-if="!first "
 
-                                <b-list-group-item v-for="kategori in kategori" :key="kategori.title" class="col-12 gita-keterangan-kategori">
+                                    >
+                                        <v-btn :color="first?'#ffffff':'#2CA1D3'"
+                                               :class="first?'black--text' : 'white--text'"
+                                               @click="first = true" style="border-radius: 20px;">
+                                            Laporkan SMS Spam
+                                        </v-btn>
+                                    </v-btn-toggle>
+                                </v-row>
+                                <div v-if="first">
+                                    <button @click="first = false"><i class="fa fa-times flex-row"></i></button>
+                                </div>
+                            </v-card-title>
+                            <v-card style="padding: 10px" class="col-md-12">
+                                <h5>Keterangan Kategori</h5>
+                                <div class="row" v-for="kategori in kategori" :key="kategori.title">
+                                    <div class="col-1">
+                                        <h6>
+                                            <span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
+                                                    class="fa fa-circle"
+                                                    aria-hidden="true"></i>
+                                            </span>
 
-                                    <h6><span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
-                                            class="fa fa-circle"
-                                            aria-hidden="true"></i></span><b>{{kategori.title}}</b>
-                                        {{kategori.deskripsi}}</h6>
-
-                                </b-list-group-item>
-
-                            <br>
+                                        </h6>
+                                    </div>
+                                    <div class="col-sm-10 col-md-4">
+                                        <p>{{kategori.title}}</p>
+                                    </div>
+                                    <div class="col-md-7 col-sm-12">
+                                        <p>{{kategori.deskripsi}}</p>
+                                    </div>
+                                </div>
+                            </v-card>
                         </div>
                     </div>
-
-
                 </div>
                 <div>
-                    <!--                        <br>-->
-                    <div class="row" v-if="!cek || shows">
+                    <div v-if="!cek || shows">
                         <div class="col-md-12 col-12 p-4">
                             <v-card>
                                 <v-data-table
@@ -170,62 +143,15 @@
                                 </v-data-table>
                             </v-card>
                         </div>
-                        <!--                            <div class="col-md-4">-->
-                        <!--                                <h4>Grafik kategori penyebar spam</h4>-->
-                        <!--                                <hr>-->
-                        <!--                                <v-card id="chart">-->
-                        <!--                                    <apexchart type="donut" :options="chartOptions"-->
-                        <!--                                               :series="series"></apexchart>-->
-                        <!--                                    <br><br><br><br>-->
-                        <!--                                </v-card>-->
-                        <!--                                <hr>-->
-                        <!--                            </div>-->
                     </div>
                     <br>
-                    <!--                        <hr color="black" width="100%">-->
-                    <!--                        <br><br>-->
-                    <!--                        <div>-->
-                    <!--                            <v-col-->
-                    <!--                                    class="text-center"-->
-                    <!--                                    cols="12"-->
-                    <!--                            >-->
-                    <!--                                Copyright © {{ new Date().getFullYear() }} Data Collector TA-07 — <strong>All Rights Reserved</strong>-->
-                    <!--                            </v-col>-->
-                    <!--                        </div>-->
                 </div>
             </div>
             <div v-else>
                 <FormSpam/>
             </div>
-            <div v-else>
-                <h1>Login</h1>
-            </div>
         </v-main>
         <Footer/>
-        <!--        <div>-->
-        <!--            <b-modal id="bv-modal-example" hide-footer>-->
-        <!--                <div class="d-block text-center">-->
-        <!--                    <h3>Spam Data Collector TA-07</h3>-->
-        <!--                    <p>Website ini ditujukan sebagai media untuk pengumpulan data sms yang bersifat SPAM-->
-        <!--                        (tidak diinginkan). Oleh karena itu, kami segenap kelompok TA-07 D4TRPL-2017, meminta bantuan-->
-        <!--                        dari seluruh rekan sekalian untuk membantu kami dalam hal mengumpulkan data yang nantinya akan-->
-        <!--                        dijadikan sebagai acuan dalam melakukan deteksi dan juga peng-klasifikasi-an setiap data pesan-->
-        <!--                        yang masuk ke nomor pengguna. Sebagai bentuk terimakasih, kami </p>-->
-        <!--                </div>-->
-        <!--                <div class="row">-->
-        <!--                    <div class="col-md-6">-->
-        <!--                                        <GoogleLogin :params="params" :onSuccess="onSuccess" :onFailure="onFailure" style="margin-top: 17px">-->
-        <!--                                            <a href="#" class="google btn">-->
-        <!--                                                <img src="../../public/g-icon.png" alt=""> Login with Google+-->
-        <!--                                            </a>-->
-        <!--                                        </GoogleLogin>-->
-        <!--                    </div>-->
-        <!--                    <div class="col-md-6">-->
-        <!--                        <b-button style="background-color: #BEBEBE; width: 100%; height: 62px; margin-bottom: 10px" class="mt-3" block @click="$bvModal.hide('bv-modal-example')">Lanjutkan</b-button>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </b-modal>-->
-        <!--        </div>-->
 
     </v-app>
 </template>
@@ -267,7 +193,6 @@
                 this.cek = true;
                 this.$http.post('/search/' + this.query)
                     .then((data) => {
-                        console.log(data.data.data.length);
                         this.shows = true;
                         if (data.data.data.length === 0) {
                             this.shows = true;
@@ -312,7 +237,6 @@
                         var indosat = 0
                         var smartfren = 0
                         var tri = 0
-                        // console.log(data.data.data);
                         for (var i in data.data.data) {
                             var obj = data.data.data[i];
                             if (obj.kategori === "Penipuan") {
@@ -357,7 +281,7 @@
                     },
                     {
                         'color': "orange",
-                        'title': "Iklan/Promosi",
+                        'title': "Iklan/ Promosi",
                         'deskripsi': "Mengandung unsur promosi baik berupa barang maupun jasa seperti telemarketer atau kreditur."
                     },
                     // {
@@ -435,21 +359,27 @@
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
-        .gita-form-search{
+        .wr-form-search {
             margin-left: -10px
         }
-        .gita-button-search{
+
+        .wr-button-search {
             margin-left: -35px
         }
-        .gita-btn-lapor{
+
+        .gita-btn-lapor {
+            border-radius: 20px;
             margin-right: 20px;
         }
-        .gita-judul-keterangan{
+
+        .gita-judul-keterangan {
             margin-left: 17px;
         }
-        .gita-keterangan-kategori{
+
+        .gita-keterangan-kategori {
             margin-left: 16px;
         }
+
         /*.gita-form-search1{*/
         /*    margin-left: 20px*/
         /*}*/
@@ -457,12 +387,14 @@
 
     /* Small devices (portrait tablets and large phones, 600px and up) */
     @media only screen and (min-width: 600px) {
-        .wr-form-search{
+        .wr-form-search {
             margin-left: -11px
         }
-        .wr-button-search{
+
+        .wr-button-search {
             margin-left: -30px
         }
+
         /*.wr-form-search1{*/
         /*    margin-left: 20px*/
         /*}*/
@@ -470,12 +402,14 @@
 
     /* Medium devices (landscape tablets, 768px and up) */
     @media only screen and (min-width: 768px) {
-        .wr-form-search{
+        .wr-form-search {
             margin-left: -11px
         }
-        .wr-button-search{
+
+        .wr-button-search {
             margin-left: -30px
         }
+
         /*.wr-form-search1{*/
         /*    margin-left: 20px*/
         /*}*/
@@ -483,12 +417,14 @@
 
     /* Large devices (laptops/desktops, 992px and up) */
     @media only screen and (min-width: 992px) {
-        .wr-form-search{
-            margin-left: 530px
+        .wr-form-search {
+            margin-left: 330px
         }
-        .wr-button-search{
-            margin-left: -28px
+
+        .wr-button-search {
+            margin-left: -27px
         }
+
         /*.wr-form-search1{*/
         /*    margin-right: -20px*/
         /*}*/
@@ -496,14 +432,16 @@
 
     /* Extra large devices (large laptops and desktops, 1200px and up) */
     @media only screen and (min-width: 1200px) {
-        .wr-form-search{
-            margin-left: 685px
+        .wr-form-search {
+            margin-left: 535px
         }
-        .wr-button-search{
-            margin-left: -28px
+
+        .wr-button-search {
+            margin-left: -29px
         }
+
         /*.wr-form-search1{*/
-        /*    margin-right: 100px*/
+        /*    margin-right: 300px*/
         /*}*/
     }
 

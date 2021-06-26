@@ -54,7 +54,6 @@
                     var tri = 0
                     var net = 0
                     var bolt = 0
-                    console.log(data.data.data);
                     for (var i in data.data.data) {
                         if (data.data.data[i].kategori === "Pesan Penipuan") {
                             telkomsel++;
