@@ -402,12 +402,11 @@
 
     /* Medium devices (landscape tablets, 768px and up) */
     @media only screen and (min-width: 768px) {
-        .wr-form-search {
-            margin-left: -11px
+        .wr-form-search{
+            margin-left: -10px
         }
-
-        .wr-button-search {
-            margin-left: -30px
+        .wr-button-search{
+            margin-left: -35px
         }
 
         /*.wr-form-search1{*/
