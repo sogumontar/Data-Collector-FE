@@ -73,9 +73,9 @@
 
             if(this.$route.query.msg ){
                 console.log(this.$route.query)
-                this.isi = this.$route.query.msg
+                var msg =this.$route.query.msg
+                this.isi = msg.replace("`", " ")
                 this.nomor = this.$route.query.nomor
-                alert(this.nomor)
                 this.tanggal = this.$route.query.date
             }
         },
