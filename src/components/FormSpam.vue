@@ -72,9 +72,7 @@
         mounted() {
 
             if(this.$route.query.msg ){
-                console.log(this.$route.query)
-                var msg =this.$route.query.msg
-                this.isi = msg.replace("`", " ")
+                this.isi = this.$route.query.msg
                 this.nomor = this.$route.query.nomor
                 this.tanggal = this.$route.query.date
             }
