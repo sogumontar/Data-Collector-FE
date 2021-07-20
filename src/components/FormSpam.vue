@@ -72,8 +72,10 @@
         mounted() {
 
             if(this.$route.query.msg ){
+                console.log(this.$route.query)
                 this.isi = this.$route.query.msg
                 this.nomor = this.$route.query.nomor
+                alert(this.nomor)
                 this.tanggal = this.$route.query.date
             }
         },
