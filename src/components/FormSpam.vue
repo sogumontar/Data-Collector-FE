@@ -6,10 +6,21 @@
                 <v-form v-model="valid">
                     <v-row>
                         <v-col cols="12" md="12">
+                        <v-text-field
+                                type="email"
+                                :rules="emailRules"
+                                v-model="email"
+                                label="Email Pengirim"
+                                required>
+                        </v-text-field>
+                    </v-col>
+                        <v-col cols="12" md="12">
                             <v-text-field
                                     type="number"
                                     v-model="nomor"
+                                    :rules="numberRules"
                                     :counter="15"
+                                    :maxLength="15"
                                     label="Nomor Pengirim Pesan"
                                     required>
                             </v-text-field>
@@ -100,9 +111,13 @@
                 ],
                 email: '',
                 emailRules: [
-                    v => !!v || 'E-mail is required',
-                    v => /.+@.+/.test(v) || 'E-mail must be valid',
+                    v => !!v || 'E-mail tidak boleh kosong',
+                    v => /.+@.+/.test(v) || 'E-mail tidak valid',
                 ],
+                numberRules:[
+                    v => !!v || "Kolom ini tidak boleh kosong",
+                    v => ( v && v.length <= 15 ) || "Maksimum nomor adalah 15",
+                ]
             }
         },
         methods: {
@@ -120,12 +135,14 @@
                 if (
                     !this.nomor || !this.isi ||
                     !this.kategori_select ||
-                    !this.tanggal
+                    !this.tanggal || !this.email
                 ) {
                     alert('Semua field harus diisi');
                 } else if (now < picked) {
                     alert("Tidak boleh lewat dari tanggal sekarang")
-                } else {
+                } else if(this.nomor>15){
+                    alert("Maksimal nomor adalah 15")
+                }else {
                     this.store();
                 }
             },

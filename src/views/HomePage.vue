@@ -16,13 +16,13 @@
                 <h3 style="color: white"
                     @click="reloads" class="ml-4">Data Collector TA-07</h3>
                 <!-- Right aligned nav items -->
-                <b-navbar-nav class="">
+                <b-navbar-nav class="container">
                     <div class="form-group">
                         <b-nav-form>
                             <b-row class="wr-form-search1" style="">
                                 <b-col cols="auto">
                                     <b-form-input size="sm" type="number" min="0" class="wr-form-search" v-model="query"
-                                                  placeholder="Cari nomor telepon" style=""></b-form-input>
+                                                  placeholder="Cari nomor spam" style=""></b-form-input>
                                 </b-col>
                                 <b-col cols="auto" class="wr-button-search" style="">
                                     <b-button size="sm" class="my-sm-0 " @click="search"
@@ -159,11 +159,13 @@
                 </div>
             </div>
             <div v-else  class="container">
-                <div v-if="!admin_login">
-                    <div class="card" align="center" style="margin: 60px" >
+                <div v-if="!admin_login" align="center">
+                    <div class="card"  style="background-color:#ECF3FF ; width: 50%" >
                         <div style="margin: 20px">
                         <p>Masukkan PIN Admin</p>
-                        <input v-model="pin_admin" type="password" class="form-control" >
+                            <div style="width: 60%">
+                                <input v-model="pin_admin" type="password" width="5px" class="form-control" >
+                            </div>
                         <br>
                         <v-btn color="#2CA1D3"  style="color: white;"
                                @click="checkPin">

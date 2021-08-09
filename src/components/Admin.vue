@@ -6,25 +6,39 @@
                  :key="data.nomor" style="">
                 <div class="card container" style="height:100%;background-color: #ECF3FF;">
                     <p v-if="data.kategori === 'Penipuan'">
-                        <span style="padding-right: 10px; color: #000000"><i class="fa fa-circle"
-                                                                             aria-hidden="true"></i></span>{{data.nomor}}
+                        <v-row>
+                            <v-col>
+                                <span style="padding-right: 10px; color: #000000"><i class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
+                            </v-col>
+
+                            <v-col align="right">
+                                <span style="alignment: right"><i class="fa fa-envelope" aria-hidden="true"></i></span>{{data.nomor}}
+                            </v-col>
+                        </v-row>
                     </p>
                     <p v-else-if="data.kategori === 'Iklan/promosi'">
-                        <span style="padding-right: 10px; color: #ECA336"><i class="fa fa-circle"
-                                                                             aria-hidden="true"></i></span>{{data.nomor}}
+                        <v-row>
+                            <v-col>
+                                <span style="padding-right: 10px; color: #ECA336"><i class="fa fa-circle"
+                                                                                     aria-hidden="true"></i></span>{{data.nomor}}
+                            </v-col>
+                            <v-col align="right">
+                                <span style="alignment: right"><i class="fa fa-envelope" aria-hidden="true"></i></span>{{data.nomor}}
+                            </v-col>
+                        </v-row>
                     </p>
                     <p>{{data.isi}}</p>
-                    <v-row style="alignment: right">
-                        <v-col cols="12">
+                    <v-row style="alignment: right" align="right">
+                        <v-col cols="12"  align="right">
                             <v-btn color="#2CA1D3" style="color: white; " width="75px" class="mr-4"
                                    @click="approve(data.id)"
                             >
-                                TERIMA
+                                <b>TERIMA</b>
                             </v-btn>
                             <v-btn color="#ffffff" style="color: #2CA1D3; " width="75px" class="mr-4"
                                    @click="reject(data.id)"
                             >
-                                TOLAK
+                                <b>TOLAK</b>
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -82,7 +96,8 @@
             }
         },
         methods: {
-            getData(){
+            getData() {
+                this.trend = [];
                 this.$http.get('/admin/findAll')
                     .then((res) => {
                         var indikator = 0;
@@ -104,16 +119,16 @@
                     }).catch(() => {
                 });
             },
-            reject(id){
-                this.$http.put('/admin/approval/'+id,{
-                    "status":0
+            reject(id) {
+                this.$http.put('/admin/approval/' + id, {
+                    "status": 0
                 })
                     .then((res) => {
                         this.getData();
                     })
             },
-            approve(id){
-                this.$http.put('/admin/approval/'+id,{
+            approve(id) {
+                this.$http.put('/admin/approval/' + id, {
                     "status": 2
                 })
                     .then((res) => {
