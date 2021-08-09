@@ -8,8 +8,9 @@ import After from "../views/After";
 import TrendingSpam from "../components/TrendingSpam";
 import FormSpam from "../components/FormSpam";
 import Footer from "../components/Footer";
+import Admin from "../components/Admin";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -28,7 +29,7 @@ const routes = [
     component: After
   },
   {
-    path: '/formSpam',
+    path: '/formSpams',
     name: 'Form Spam',
     component: FormSpam
   },
@@ -55,6 +56,11 @@ const routes = [
     name: 'footer',
     component: Footer
   },
+  {
+    path: '/admin',
+    name: 'admin',
+    component:  Admin
+  }
 ]
 
 const router = new VueRouter({

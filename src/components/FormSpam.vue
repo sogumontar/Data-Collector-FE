@@ -53,7 +53,7 @@
                         </v-col>
                     </v-row>
                     <div align="right">
-                        <v-btn color="#0560AA" style="color: white; alignment: right" class="mr-4"
+                        <v-btn color="#2CA1D3" style="color: white; alignment: right" class="mr-4"
                                @click="submit">
                             submit
                         </v-btn>
@@ -89,13 +89,7 @@
                 kategori_select: '',
                 kategori: [
                     'Penipuan',
-                    // 'Gift Card (Penipuan yang mengarahkan ke link tertentu)',
                     'Iklan/promosi',
-                    // 'Banking (transaksi SMS banking)',
-                    // 'Operator (Pesan yang langsung dari operator tertentu)',
-                    // 'Unknown (Pesan yang tidak mengganggu namun nomor pengirim ' +
-                    // 'tidak diketahui)',
-                    'Ham'
                 ],
                 nama_pengirim: '--',
                 tanggal: '',
@@ -148,7 +142,7 @@
                         "jumlah": this.jumlah
                     }
                 ).then(data => {
-                    alert('Store Data Sukses')
+                    alert('Simpan Data Sukses')
                     window.location.href = "/";
                 }).catch((e) => {
                     alert(e);

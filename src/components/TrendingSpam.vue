@@ -20,7 +20,7 @@
 
 
             <div class="col-md-12 col-11 gita-container-sms" v-if="succes_load" v-for="data in getAllTrendLimit5" :key="data.nomor" style="">
-                <div class="card container" style="height:85%;background-color: #ECF3FF;">
+                <div class="card container" style="height:95%; background-color: #ECF3FF;">
                     <p v-if="data.kategori === 'Penipuan'">
                         <span style="padding-right: 10px; color: #000000"><i class="fa fa-circle"
                                                                              aria-hidden="true"></i></span>{{data.nomor}}

@@ -39,116 +39,142 @@
         </b-navbar>
         <v-spacer></v-spacer>
         <v-main class="container">
-            <div v-if="!first">
-                <div v-if="hit">
-                    <div class="row">
-                        <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
-                        <div class="col-md-1" style="align-items: end">
-                            <button @click="tutup"><i class="fa fa-times"></i></button>
-                        </div>
-                    </div>
-                    <div class="container" v-if="shows">
-                        <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
-                    </div>
-                    <div class="container" v-else>
+            <div v-if="!admin">
+                <div v-if="!first">
+                    <div v-if="hit">
                         <div class="row">
-                            <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
+                            <div class="col-md-11"><h5><b v-if="!shows">Hasil Pencarian</b></h5></div>
+                            <div class="col-md-1" style="align-items: end">
+                                <button @click="tutup"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="container" v-if="shows">
+                            <center><h4>Hasil pencarian untuk {{query}} tidak ditemukan</h4></center>
+                        </div>
+                        <div class="container" v-else>
                             <div class="row">
-                                <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
-                                    <div class="card container" style="height:85%;background-color: #ECF3FF">
-                                        <p>
+                                <div class="col-md-11"><h5><b v-if="shows">Hasil Pencarian</b></h5></div>
+                                <div class="row">
+                                    <div class="col-md-12" v-for="data in resultsearch" :key="data.nomor">
+                                        <div class="card container" style="height:85%;background-color: #ECF3FF">
+                                            <p>
                                                     <span style="padding-right: 10px; color: orange"><i
                                                             class="fa fa-circle" aria-hidden="true"></i></span>{{data.nomor}}
-                                        </p>
-                                        <p>{{data.isi}}</p>
+                                            </p>
+                                            <p>{{data.isi}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="row" v-if="!cek">
-                        <div class="col-md-8 col-sm-12 ">
-                            <br>
-                            <TrendingSpam/>
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <v-card-title v-if="!cek">
-                                <v-row justify="end">
-                                    <v-btn-toggle
-                                            rounded
-                                            background-color="#FFFFFF"
-                                            v-if="!first "
+                    <div class="col-md-12">
+                        <div class="row" v-if="!cek">
+                            <div class="col-md-8 col-sm-12 ">
+                                <br>
+                                <TrendingSpam/>
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                <v-card-title v-if="!cek">
+                                    <v-row justify="end">
+                                        <v-btn-toggle
+                                                rounded
+                                                background-color="#FFFFFF"
+                                                v-if="!first "
 
-                                    >
-                                        <v-btn :color="first?'#ffffff':'#2CA1D3'"
-                                               :class="first?'black--text' : 'white--text'"
-                                               @click="first = true" style="border-radius: 20px;">
-                                            Laporkan SMS Spam
-                                        </v-btn>
-                                    </v-btn-toggle>
-                                </v-row>
-                                <div v-if="first">
-                                    <button @click="first = false"><i class="fa fa-times flex-row"></i></button>
-                                </div>
-                            </v-card-title>
-                            <v-card style="padding: 10px" class="col-md-12">
-                                <h5>Keterangan Kategori</h5>
-                                <div class="row" v-for="kategori in kategori" :key="kategori.title">
-                                    <div class="col-1">
-                                        <h6>
+                                        >
+                                            <v-btn :color="first?'#ffffff':'#2CA1D3'"
+                                                   :class="first?'black--text' : 'white--text'"
+                                                   @click="first = true" style="border-radius: 20px;">
+                                                Laporkan SMS Spam
+                                            </v-btn>
+
+                                            <v-btn :color="first?'#ffffff':'#2CA1D3'"
+                                                   :class="first?'black--text' : 'white--text'"
+                                                   @click="openAdmin" style="border-radius: 20px; margin-left: 10px">
+                                                Admin Site
+                                            </v-btn>
+                                        </v-btn-toggle>
+                                    </v-row>
+                                    <div v-if="first">
+                                        <button @click="first = false"><i class="fa fa-times flex-row"></i></button>
+                                    </div>
+                                </v-card-title>
+                                <v-card style="padding: 10px" class="col-md-12">
+                                    <h5>Keterangan Kategori</h5>
+                                    <div class="row" v-for="kategori in kategori" :key="kategori.title">
+                                        <div class="col-1">
+                                            <h6>
                                             <span style="padding-right: 10px; " v-bind:style="{color:kategori.color}"><i
                                                     class="fa fa-circle"
                                                     aria-hidden="true"></i>
                                             </span>
 
-                                        </h6>
+                                            </h6>
+                                        </div>
+                                        <div class="col-sm-10 col-md-4">
+                                            <p>{{kategori.title}}</p>
+                                        </div>
+                                        <div class="col-md-7 col-sm-12">
+                                            <p>{{kategori.deskripsi}}</p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-10 col-md-4">
-                                        <p>{{kategori.title}}</p>
-                                    </div>
-                                    <div class="col-md-7 col-sm-12">
-                                        <p>{{kategori.deskripsi}}</p>
-                                    </div>
-                                </div>
-                            </v-card>
+                                </v-card>
+                            </div>
                         </div>
+                    </div>
+                    <div>
+                        <div v-if="!cek || shows">
+                            <div class="col-md-12 col-12 p-4">
+                                <v-card>
+                                    <v-data-table
+                                            dense
+                                            @click:row="show"
+                                            :headers="headers"
+                                            :items="desserts"
+                                            :items-per-page="10"
+                                            class="elevation-1 table table-responsive"
+                                    >
+                                        <template v-slot:item="{ item }">
+                                            <tr>
+                                                <td><span v-bind:style="{color:item.colour}"
+                                                          style="padding-right: 10px;"><i class="fa fa-circle"
+                                                                                          aria-hidden="true"></i></span>
+                                                </td>
+                                                <td>{{ item.nomor }}</td>
+                                                <td>{{ item.isi }}</td>
+                                                <td>{{ item.jenis_provider }}</td>
+                                                <td>{{ item.tanggal }}</td>
+                                            </tr>
+                                        </template>
+                                    </v-data-table>
+                                </v-card>
+                            </div>
+                        </div>
+                        <br>
                     </div>
                 </div>
-                <div>
-                    <div v-if="!cek || shows">
-                        <div class="col-md-12 col-12 p-4">
-                            <v-card>
-                                <v-data-table
-                                        dense
-                                        @click:row="show"
-                                        :headers="headers"
-                                        :items="desserts"
-                                        :items-per-page="10"
-                                        class="elevation-1 table table-responsive"
-                                >
-                                    <template v-slot:item="{ item }">
-                                        <tr>
-                                            <td><span v-bind:style="{color:item.colour}"
-                                                      style="padding-right: 10px;"><i class="fa fa-circle"
-                                                                                      aria-hidden="true"></i></span>
-                                            </td>
-                                            <td>{{ item.nomor }}</td>
-                                            <td>{{ item.isi }}</td>
-                                            <td>{{ item.jenis_provider }}</td>
-                                            <td>{{ item.tanggal }}</td>
-                                        </tr>
-                                    </template>
-                                </v-data-table>
-                            </v-card>
-                        </div>
-                    </div>
-                    <br>
+                <div v-else>
+                    <FormSpam/>
                 </div>
             </div>
-            <div v-else>
-                <FormSpam/>
+            <div v-else  class="container">
+                <div v-if="!admin_login">
+                    <div class="card" align="center" style="margin: 60px" >
+                        <div style="margin: 20px">
+                        <p>Masukkan PIN Admin</p>
+                        <input v-model="pin_admin" type="password" class="form-control" >
+                        <br>
+                        <v-btn color="#2CA1D3"  style="color: white;"
+                               @click="checkPin">
+                            Lanjutkan
+                        </v-btn>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    <Admin/>
+                </div>
             </div>
         </v-main>
         <Footer/>
@@ -162,6 +188,7 @@
     import {mdbIcon} from 'mdbvue';
     import TrendingSpam from "../components/TrendingSpam";
     import Footer from "../components/Footer";
+    import Admin from "../components/Admin";
 
     export default {
         name: 'HomePage',
@@ -170,7 +197,8 @@
             FormSpam,
             Home,
             Footer,
-            mdbIcon
+            mdbIcon,
+            Admin,
         },
         computed: {
             currentImg: function () {
@@ -184,6 +212,19 @@
             }
         },
         methods: {
+            checkPin(){
+                if(this.pin_admin == "ta07"){
+                    this.admin_login = true;
+                    this.pin_admin =""
+                }else{
+                    alert("Pin Salah");
+                }
+
+            },
+            openAdmin() {
+                this.admin = true
+                this.$bvModal.show('myModal')
+            },
             tutup() {
                 this.cek = false;
                 this.hit = false;
@@ -223,6 +264,8 @@
                 this.currentIndex -= 1;
             },
             reloads() {
+                this.admin_login= false
+                this.admin = false
                 this.first = false
                 this.shows = false
                 this.cek = false;
@@ -266,6 +309,9 @@
         },
         data() {
             return {
+                admin: false,
+                pin_admin:"",
+                admin_login: false,
                 cek: false,
                 // only needed if you want to render the button with the google ui
                 renderParams: {
@@ -367,25 +413,8 @@
             margin-left: -35px
         }
 
-        .gita-btn-lapor {
-            border-radius: 20px;
-            margin-right: 20px;
-        }
-
-        .gita-judul-keterangan {
-            margin-left: 17px;
-        }
-
-        .gita-keterangan-kategori {
-            margin-left: 16px;
-        }
-
-        /*.gita-form-search1{*/
-        /*    margin-left: 20px*/
-        /*}*/
     }
 
-    /* Small devices (portrait tablets and large phones, 600px and up) */
     @media only screen and (min-width: 600px) {
         .wr-form-search {
             margin-left: -11px
@@ -395,17 +424,15 @@
             margin-left: -30px
         }
 
-        /*.wr-form-search1{*/
-        /*    margin-left: 20px*/
-        /*}*/
     }
 
     /* Medium devices (landscape tablets, 768px and up) */
     @media only screen and (min-width: 768px) {
-        .wr-form-search{
+        .wr-form-search {
             margin-left: -10px
         }
-        .wr-button-search{
+
+        .wr-button-search {
             margin-left: -35px
         }
 
@@ -482,61 +509,10 @@
         display: table;
     }
 
-    .inputField {
-        flex: 1;
-    }
-
-    .google {
-        background-color: #bebebe;
-        color: white;
-    }
-
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: all 0.9s ease;
-        overflow: hidden;
-        visibility: visible;
-        position: absolute;
-        width: 100%;
-        opacity: 1;
-    }
-
-    .fade-enter,
-    .fade-leave-to {
-        visibility: hidden;
-        width: 100%;
-        opacity: 0;
-    }
-
     img {
         height: 600px;
         width: 100%
     }
 
-    .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 40%;
-        width: auto;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.7s ease;
-        border-radius: 0 4px 4px 0;
-        text-decoration: none;
-        user-select: none;
-    }
 
-    .next {
-        right: 0;
-    }
-
-    .prev {
-        left: 0;
-    }
-
-    .prev:hover, .next:hover {
-        background-color: rgba(0, 0, 0, 0.9);
-    }
 </style>
