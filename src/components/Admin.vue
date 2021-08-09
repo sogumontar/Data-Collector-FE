@@ -12,7 +12,7 @@
                             </v-col>
 
                             <v-col align="right">
-                                <span style="alignment: right"><i class="fa fa-envelope" aria-hidden="true"></i></span>{{data.nomor}}
+                                <span style="alignment: right"><i class="fa fa-envelope" aria-hidden="true"></i></span>{{data.email}}
                             </v-col>
                         </v-row>
                     </p>
@@ -23,7 +23,7 @@
                                                                                      aria-hidden="true"></i></span>{{data.nomor}}
                             </v-col>
                             <v-col align="right">
-                                <span style="alignment: right"><i class="fa fa-envelope" aria-hidden="true"></i></span>{{data.nomor}}
+                                <span style="alignment: right"><i class="fa fa-envelope" aria-hidden="true"></i></span>{{data.email}}
                             </v-col>
                         </v-row>
                     </p>
@@ -110,6 +110,7 @@
                                 'jumlah': data[indikator].jumlah,
                                 'isi': data[indikator].isi,
                                 'position': indikator,
+                                'email':data[indikator].nama_pengirim,
                                 'kategori': data[indikator].kategori
                             });
                             indikator++

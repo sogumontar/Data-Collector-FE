@@ -154,7 +154,7 @@
                         "nomor": this.nomor,
                         "kategori": this.kategori_select,
                         "id_pengirim": "1",
-                        "nama_pengirim": this.nama_pengirim,
+                        "nama_pengirim": this.email,
                         "jenis_provider": this.select,
                         "jumlah": this.jumlah
                     }
