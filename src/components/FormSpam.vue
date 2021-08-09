@@ -140,7 +140,7 @@
                     alert('Semua field harus diisi');
                 } else if (now < picked) {
                     alert("Tidak boleh lewat dari tanggal sekarang")
-                } else if(this.nomor>15){
+                } else if(this.nomor.length>15){
                     alert("Maksimal nomor adalah 15")
                 }else {
                     this.store();
