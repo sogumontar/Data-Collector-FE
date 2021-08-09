@@ -16,7 +16,7 @@
                 <h3 style="color: white"
                     @click="reloads" class="ml-4">Data Collector TA-07</h3>
                 <!-- Right aligned nav items -->
-                <b-navbar-nav class="container">
+                <b-navbar-nav class="">
                     <div class="form-group">
                         <b-nav-form>
                             <b-row class="wr-form-search1" style="">
